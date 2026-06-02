@@ -88,7 +88,7 @@ open a machine terminal in your `Repos` folder:
 
 ```shell
 # Replace username with YOUR GitHub username.
-git clone https://github.com/username/datafun-04-notebooks
+git clone https://github.com/ajaneh/datafun-04-notebooks
 
 cd datafun-04-notebooks
 code .
@@ -146,29 +146,6 @@ You accidentally started Python interactive mode.
 It happens.
 Press `Ctrl+c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
 
-## Example Output (Can Remove this Section after You Verify)
-
-```shell
-| INFO | EDA | --- Section 9: Summary and next steps ---
-| INFO | EDA | ========================
-| INFO | EDA | SUMMARY
-| INFO | EDA | ========================
-| INFO | EDA | Dataset: penguins
-| INFO | EDA | Original rows: 344
-| INFO | EDA | Clean rows:    342
-| INFO | EDA | Groups found in species: ['Adelie', 'Chinstrap', 'Gentoo']
-| INFO | EDA | Strongest correlation:
-| INFO | EDA |   flipper_length_mm and body_mass_g (~0.87)
-| INFO | EDA | Suggested next step:
-| INFO | EDA |   Model body_mass_g ~ flipper_length_mm with linear regression
-| INFO | EDA | ----- in a script, call plt.show() once at the end to display all charts -----
-| INFO | EDA | EDA workflow complete
-| INFO | EDA | IMPORTANT: This script creates chart windows.
-| INFO | EDA | Close any chart windows and terminate this process with CTRL+c as needed.
-| INFO | EDA | ========================
-| INFO | EDA | Executed successfully!
-| INFO | EDA | ========================
-```
 
 ## Findings and Visuals
 
