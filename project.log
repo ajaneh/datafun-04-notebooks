@@ -852,3 +852,1735 @@ Interpretation:
 
 From this heatmap, we can see that flipper_length_mm and body_mass_g show strong positive correlation (~0.87).
 
+2026-06-04 11:11:49 | INFO | EDA-NB | === RUN START ===
+2026-06-04 11:11:50 | INFO | EDA-NB | project=EDA-NB
+2026-06-04 11:11:50 | INFO | EDA-NB | repo_dir=datafun-04-notebooks
+2026-06-04 11:11:50 | INFO | EDA-NB | python=3.14.0
+2026-06-04 11:11:50 | INFO | EDA-NB | os=Windows 11
+2026-06-04 11:11:50 | INFO | EDA-NB | shell=powershell
+2026-06-04 11:11:50 | INFO | EDA-NB | cwd=notebooks
+2026-06-04 11:11:50 | INFO | EDA-NB | github_actions=False
+2026-06-04 11:11:50 | INFO | EDA-NB | Imports complete.
+2026-06-04 11:11:50 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:11:50 | INFO | EDA-NB | Loaded: 344 rows, 7 columns
+2026-06-04 11:11:50 | INFO | EDA-NB | Previewing first few rows of the dataset
+2026-06-04 11:11:50 | INFO | EDA-NB | Column names
+2026-06-04 11:11:50 | INFO | EDA-NB | DataFrame info (types and non-null counts)
+2026-06-04 11:11:50 | INFO | EDA-NB | Dataset shape: 344 rows, 7 columns
+2026-06-04 11:11:50 | INFO | EDA-NB | Building starter data dictionary
+2026-06-04 11:11:50 | DEBUG | EDA-NB | 
+              column    dtype  missing_count  missing_pct
+0            species      str              0         0.00
+1             island      str              0         0.00
+2     bill_length_mm  float64              2         0.58
+3      bill_depth_mm  float64              2         0.58
+4  flipper_length_mm  float64              2         0.58
+5        body_mass_g  float64              2         0.58
+6                sex      str             11         3.20
+2026-06-04 11:11:50 | INFO | EDA-NB | Missing values per column:
+2026-06-04 11:11:50 | INFO | EDA-NB | species               0
+island                0
+bill_length_mm        2
+bill_depth_mm         2
+flipper_length_mm     2
+body_mass_g           2
+sex                  11
+dtype: int64
+2026-06-04 11:11:50 | INFO | EDA-NB | Checking missing values per column
+2026-06-04 11:11:50 | DEBUG | EDA-NB | 
+sex                  11
+bill_depth_mm         2
+bill_length_mm        2
+flipper_length_mm     2
+body_mass_g           2
+island                0
+species               0
+dtype: int64
+2026-06-04 11:11:50 | INFO | EDA-NB | Duplicate rows detected: 0
+2026-06-04 11:11:50 | INFO | EDA-NB | Call describe() for numeric columns
+2026-06-04 11:11:50 | DEBUG | EDA-NB | 
+       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+
+2026-06-04 11:11:50 | DEBUG | EDA-NB | Columns required to be non-missing: ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'species']
+2026-06-04 11:11:50 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:11:50 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:11:50 | INFO | EDA-NB | Rows dropped:  2
+2026-06-04 11:11:50 | INFO | EDA-NB | --------------- Manual statistics ---------------
+2026-06-04 11:11:50 | INFO | EDA-NB | Body Mass Statistics (using numpy):
+2026-06-04 11:11:50 | INFO | EDA-NB |   Mean: 4201.75 g
+2026-06-04 11:11:50 | INFO | EDA-NB |   Std Dev: 800.78 g
+2026-06-04 11:11:50 | INFO | EDA-NB |   Min: 2700.00 g
+2026-06-04 11:11:50 | INFO | EDA-NB |   Max: 6300.00 g
+2026-06-04 11:11:50 | INFO | EDA-NB |   Range: 3600.00 g
+2026-06-04 11:11:50 | INFO | EDA-NB | Computing overall descriptive statistics
+2026-06-04 11:11:50 | DEBUG | EDA-NB | 
+                   count         mean         std     min       25%      50%     75%     max
+bill_length_mm     342.0    43.921930    5.459584    32.1    39.225    44.45    48.5    59.6
+bill_depth_mm      342.0    17.151170    1.974793    13.1    15.600    17.30    18.7    21.5
+flipper_length_mm  342.0   200.915205   14.061714   172.0   190.000   197.00   213.0   231.0
+body_mass_g        342.0  4201.754386  801.954536  2700.0  3550.000  4050.00  4750.0  6300.0
+2026-06-04 11:11:50 | INFO | EDA-NB | --------------- Using pandas groupby() and agg() ---------------
+2026-06-04 11:11:50 | INFO | EDA-NB | Computing descriptive statistics by group
+2026-06-04 11:11:50 | DEBUG | EDA-NB | 
+          bill_length_mm                                  bill_depth_mm                                   \
+                   count       mean       std   min   max         count       mean       std   min   max   
+species                                                                                                    
+Adelie               151  38.791391  2.663405  32.1  46.0           151  18.346358  1.216650  15.5  21.5   
+Chinstrap             68  48.833824  3.339256  40.9  58.0            68  18.420588  1.135395  16.4  20.8   
+Gentoo               123  47.504878  3.081857  40.9  59.6           123  14.982114  0.981220  13.1  17.3   
+
+          flipper_length_mm                                     body_mass_g                                           
+                      count        mean       std    min    max       count         mean         std     min     max  
+species                                                                                                               
+Adelie                  151  189.953642  6.539457  172.0  210.0         151  3700.662252  458.566126  2850.0  4775.0  
+Chinstrap                68  195.823529  7.131894  178.0  212.0          68  3733.088235  384.335081  2700.0  4800.0  
+Gentoo                  123  217.186992  6.484976  203.0  231.0         123  5076.016260  504.116237  3950.0  6300.0  
+2026-06-04 11:11:50 | INFO | EDA-NB | --------------- Improving the output ---------------
+2026-06-04 11:11:50 | DEBUG | EDA-NB | 
+                             count         mean         std     min     max
+species                                                                    
+Adelie    bill_length_mm       151    38.791391    2.663405    32.1    46.0
+          bill_depth_mm        151    18.346358    1.216650    15.5    21.5
+          flipper_length_mm    151   189.953642    6.539457   172.0   210.0
+          body_mass_g          151  3700.662252  458.566126  2850.0  4775.0
+Chinstrap bill_length_mm        68    48.833824    3.339256    40.9    58.0
+          bill_depth_mm         68    18.420588    1.135395    16.4    20.8
+          flipper_length_mm     68   195.823529    7.131894   178.0   212.0
+          body_mass_g           68  3733.088235  384.335081  2700.0  4800.0
+Gentoo    bill_length_mm       123    47.504878    3.081857    40.9    59.6
+          bill_depth_mm        123    14.982114    0.981220    13.1    17.3
+          flipper_length_mm    123   217.186992    6.484976   203.0   231.0
+          body_mass_g          123  5076.016260  504.116237  3950.0  6300.0
+2026-06-04 11:11:50 | INFO | EDA-NB | Computing correlation matrix for numeric columns
+2026-06-04 11:11:50 | INFO | EDA-NB | 
+Correlation matrix:
+2026-06-04 11:11:50 | DEBUG | EDA-NB | 
+                   bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+bill_length_mm           1.000000      -0.235053           0.656181     0.595110
+bill_depth_mm           -0.235053       1.000000          -0.583851    -0.471916
+flipper_length_mm        0.656181      -0.583851           1.000000     0.871202
+body_mass_g              0.595110      -0.471916           0.871202     1.000000
+2026-06-04 11:11:50 | INFO | EDA-NB | ---------Visualize Correlation Matrix as a Heatmap---------------
+2026-06-04 11:11:51 | INFO | EDA-NB | ---- Creating Scatter Plot to see Relationships ------
+2026-06-04 11:11:51 | INFO | EDA-NB | ----   Use clean dataframe ---------------------------
+2026-06-04 11:11:51 | INFO | EDA-NB | ----   Set x to flipper length -----------------------
+2026-06-04 11:11:51 | INFO | EDA-NB | ----   Set y to bill length --------------------------
+2026-06-04 11:11:51 | INFO | EDA-NB | ----   Set the hue (color mapping) to the group column --
+2026-06-04 11:11:51 | INFO | EDA-NB | ------- Creating another chart -------
+2026-06-04 11:11:51 | INFO | EDA-NB | ------ Creating Box Plot to see Distribution: ---------
+2026-06-04 11:11:51 | INFO | EDA-NB | ------   Use clean dataframe --------------------------
+2026-06-04 11:11:51 | INFO | EDA-NB | ------   Set x to the group column --------------------
+2026-06-04 11:11:51 | INFO | EDA-NB | ------   Set y to flipper length ----------------------
+2026-06-04 11:11:52 | INFO | EDA-NB | Creating A Histogram
+2026-06-04 11:11:52 | INFO | EDA-NB | Creating A Histogram to see Distribution of flipper length compared by sex
+2026-06-04 11:11:52 | INFO | EDA-NB | ========================
+2026-06-04 11:11:52 | INFO | EDA-NB | SUMMARY
+2026-06-04 11:11:52 | INFO | EDA-NB | ========================
+2026-06-04 11:11:52 | INFO | EDA-NB | Dataset: penguins
+2026-06-04 11:11:52 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:11:52 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:11:52 | INFO | EDA-NB | Groups found in species: ['Adelie', 'Chinstrap', 'Gentoo']
+2026-06-04 11:11:52 | INFO | EDA-NB | Strongest correlation: 
+2026-06-04 11:11:52 | INFO | EDA-NB |   flipper_length_mm and body_mass_g (~0.87)
+2026-06-04 11:11:52 | INFO | EDA-NB | Suggested next step: 
+2026-06-04 11:11:52 | INFO | EDA-NB |   Model body_mass_g ~ flipper_length_mm with linear regression
+2026-06-04 11:11:52 | INFO | EDA-NB | EDA workflow complete
+2026-06-04 11:11:52 | INFO | EDA-NB | IMPORTANT: This script creates chart windows.
+2026-06-04 11:11:52 | INFO | EDA-NB | Close any chart windows and terminate this process with CTRL+c as needed.
+2026-06-04 11:11:52 | INFO | EDA-NB | ========================
+2026-06-04 11:11:52 | INFO | EDA-NB | Executed successfully!
+2026-06-04 11:11:52 | INFO | EDA-NB | ========================
+2026-06-04 11:14:13 | INFO | EDA-NB | === RUN START ===
+2026-06-04 11:14:13 | INFO | EDA-NB | project=EDA-NB
+2026-06-04 11:14:13 | INFO | EDA-NB | repo_dir=datafun-04-notebooks
+2026-06-04 11:14:13 | INFO | EDA-NB | python=3.14.0
+2026-06-04 11:14:13 | INFO | EDA-NB | os=Windows 11
+2026-06-04 11:14:13 | INFO | EDA-NB | shell=powershell
+2026-06-04 11:14:13 | INFO | EDA-NB | cwd=notebooks
+2026-06-04 11:14:13 | INFO | EDA-NB | github_actions=False
+2026-06-04 11:14:13 | INFO | EDA-NB | Imports complete.
+2026-06-04 11:14:14 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:14:14 | INFO | EDA-NB | Loaded: 344 rows, 7 columns
+2026-06-04 11:14:14 | INFO | EDA-NB | Previewing first few rows of the dataset
+2026-06-04 11:14:14 | INFO | EDA-NB | Column names
+2026-06-04 11:14:14 | INFO | EDA-NB | DataFrame info (types and non-null counts)
+2026-06-04 11:14:14 | INFO | EDA-NB | Dataset shape: 344 rows, 7 columns
+2026-06-04 11:14:14 | INFO | EDA-NB | Building starter data dictionary
+2026-06-04 11:14:14 | DEBUG | EDA-NB | 
+              column    dtype  missing_count  missing_pct
+0            species      str              0         0.00
+1             island      str              0         0.00
+2     bill_length_mm  float64              2         0.58
+3      bill_depth_mm  float64              2         0.58
+4  flipper_length_mm  float64              2         0.58
+5        body_mass_g  float64              2         0.58
+6                sex      str             11         3.20
+2026-06-04 11:14:14 | INFO | EDA-NB | Missing values per column:
+2026-06-04 11:14:14 | INFO | EDA-NB | species               0
+island                0
+bill_length_mm        2
+bill_depth_mm         2
+flipper_length_mm     2
+body_mass_g           2
+sex                  11
+dtype: int64
+2026-06-04 11:14:14 | INFO | EDA-NB | Checking missing values per column
+2026-06-04 11:14:14 | DEBUG | EDA-NB | 
+sex                  11
+bill_depth_mm         2
+bill_length_mm        2
+flipper_length_mm     2
+body_mass_g           2
+island                0
+species               0
+dtype: int64
+2026-06-04 11:14:14 | INFO | EDA-NB | Duplicate rows detected: 0
+2026-06-04 11:14:14 | INFO | EDA-NB | Call describe() for numeric columns
+2026-06-04 11:14:14 | DEBUG | EDA-NB | 
+       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+
+2026-06-04 11:14:14 | DEBUG | EDA-NB | Columns required to be non-missing: ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'species']
+2026-06-04 11:14:14 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:14:14 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:14:14 | INFO | EDA-NB | Rows dropped:  2
+2026-06-04 11:14:14 | INFO | EDA-NB | --------------- Manual statistics ---------------
+2026-06-04 11:14:14 | INFO | EDA-NB | Body Mass Statistics (using numpy):
+2026-06-04 11:14:14 | INFO | EDA-NB |   Mean: 4201.75 g
+2026-06-04 11:14:14 | INFO | EDA-NB |   Std Dev: 800.78 g
+2026-06-04 11:14:14 | INFO | EDA-NB |   Min: 2700.00 g
+2026-06-04 11:14:14 | INFO | EDA-NB |   Max: 6300.00 g
+2026-06-04 11:14:14 | INFO | EDA-NB |   Range: 3600.00 g
+2026-06-04 11:14:14 | INFO | EDA-NB | Computing overall descriptive statistics
+2026-06-04 11:14:14 | DEBUG | EDA-NB | 
+                   count         mean         std     min       25%      50%     75%     max
+bill_length_mm     342.0    43.921930    5.459584    32.1    39.225    44.45    48.5    59.6
+bill_depth_mm      342.0    17.151170    1.974793    13.1    15.600    17.30    18.7    21.5
+flipper_length_mm  342.0   200.915205   14.061714   172.0   190.000   197.00   213.0   231.0
+body_mass_g        342.0  4201.754386  801.954536  2700.0  3550.000  4050.00  4750.0  6300.0
+2026-06-04 11:14:14 | INFO | EDA-NB | --------------- Using pandas groupby() and agg() ---------------
+2026-06-04 11:14:14 | INFO | EDA-NB | Computing descriptive statistics by group
+2026-06-04 11:14:14 | DEBUG | EDA-NB | 
+          bill_length_mm                                  bill_depth_mm                                   \
+                   count       mean       std   min   max         count       mean       std   min   max   
+species                                                                                                    
+Adelie               151  38.791391  2.663405  32.1  46.0           151  18.346358  1.216650  15.5  21.5   
+Chinstrap             68  48.833824  3.339256  40.9  58.0            68  18.420588  1.135395  16.4  20.8   
+Gentoo               123  47.504878  3.081857  40.9  59.6           123  14.982114  0.981220  13.1  17.3   
+
+          flipper_length_mm                                     body_mass_g                                           
+                      count        mean       std    min    max       count         mean         std     min     max  
+species                                                                                                               
+Adelie                  151  189.953642  6.539457  172.0  210.0         151  3700.662252  458.566126  2850.0  4775.0  
+Chinstrap                68  195.823529  7.131894  178.0  212.0          68  3733.088235  384.335081  2700.0  4800.0  
+Gentoo                  123  217.186992  6.484976  203.0  231.0         123  5076.016260  504.116237  3950.0  6300.0  
+2026-06-04 11:14:14 | INFO | EDA-NB | --------------- Improving the output ---------------
+2026-06-04 11:14:14 | DEBUG | EDA-NB | 
+                             count         mean         std     min     max
+species                                                                    
+Adelie    bill_length_mm       151    38.791391    2.663405    32.1    46.0
+          bill_depth_mm        151    18.346358    1.216650    15.5    21.5
+          flipper_length_mm    151   189.953642    6.539457   172.0   210.0
+          body_mass_g          151  3700.662252  458.566126  2850.0  4775.0
+Chinstrap bill_length_mm        68    48.833824    3.339256    40.9    58.0
+          bill_depth_mm         68    18.420588    1.135395    16.4    20.8
+          flipper_length_mm     68   195.823529    7.131894   178.0   212.0
+          body_mass_g           68  3733.088235  384.335081  2700.0  4800.0
+Gentoo    bill_length_mm       123    47.504878    3.081857    40.9    59.6
+          bill_depth_mm        123    14.982114    0.981220    13.1    17.3
+          flipper_length_mm    123   217.186992    6.484976   203.0   231.0
+          body_mass_g          123  5076.016260  504.116237  3950.0  6300.0
+2026-06-04 11:14:14 | INFO | EDA-NB | Computing correlation matrix for numeric columns
+2026-06-04 11:14:14 | INFO | EDA-NB | 
+Correlation matrix:
+2026-06-04 11:14:14 | DEBUG | EDA-NB | 
+                   bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+bill_length_mm           1.000000      -0.235053           0.656181     0.595110
+bill_depth_mm           -0.235053       1.000000          -0.583851    -0.471916
+flipper_length_mm        0.656181      -0.583851           1.000000     0.871202
+body_mass_g              0.595110      -0.471916           0.871202     1.000000
+2026-06-04 11:14:14 | INFO | EDA-NB | ---------Visualize Correlation Matrix as a Heatmap---------------
+2026-06-04 11:14:15 | INFO | EDA-NB | ---- Creating Scatter Plot to see Relationships ------
+2026-06-04 11:14:15 | INFO | EDA-NB | ----   Use clean dataframe ---------------------------
+2026-06-04 11:14:15 | INFO | EDA-NB | ----   Set x to flipper length -----------------------
+2026-06-04 11:14:15 | INFO | EDA-NB | ----   Set y to bill length --------------------------
+2026-06-04 11:14:15 | INFO | EDA-NB | ----   Set the hue (color mapping) to the group column --
+2026-06-04 11:14:15 | INFO | EDA-NB | ------- Creating another chart -------
+2026-06-04 11:14:15 | INFO | EDA-NB | ------ Creating Box Plot to see Distribution: ---------
+2026-06-04 11:14:15 | INFO | EDA-NB | ------   Use clean dataframe --------------------------
+2026-06-04 11:14:15 | INFO | EDA-NB | ------   Set x to the group column --------------------
+2026-06-04 11:14:15 | INFO | EDA-NB | ------   Set y to flipper length ----------------------
+2026-06-04 11:14:16 | INFO | EDA-NB | Creating A Histogram
+2026-06-04 11:14:16 | INFO | EDA-NB | Creating A Histogram to see Distribution of flipper length compared by sex
+2026-06-04 11:14:16 | INFO | EDA-NB | ========================
+2026-06-04 11:14:16 | INFO | EDA-NB | SUMMARY
+2026-06-04 11:14:16 | INFO | EDA-NB | ========================
+2026-06-04 11:14:16 | INFO | EDA-NB | Dataset: penguins
+2026-06-04 11:14:16 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:14:16 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:14:16 | INFO | EDA-NB | Groups found in species: ['Adelie', 'Chinstrap', 'Gentoo']
+2026-06-04 11:14:16 | INFO | EDA-NB | Strongest correlation: 
+2026-06-04 11:14:16 | INFO | EDA-NB |   flipper_length_mm and body_mass_g (~0.87)
+2026-06-04 11:14:16 | INFO | EDA-NB | Suggested next step: 
+2026-06-04 11:14:16 | INFO | EDA-NB |   Model body_mass_g ~ flipper_length_mm with linear regression
+2026-06-04 11:14:16 | INFO | EDA-NB | See what other seaborn datasets you can load and explore with the same workflow!
+2026-06-04 11:14:16 | INFO | EDA-NB | Available seaborn datasets: ['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic']
+2026-06-04 11:14:16 | INFO | EDA-NB | EDA workflow complete
+2026-06-04 11:14:16 | INFO | EDA-NB | IMPORTANT: This script creates chart windows.
+2026-06-04 11:14:16 | INFO | EDA-NB | Close any chart windows and terminate this process with CTRL+c as needed.
+2026-06-04 11:14:16 | INFO | EDA-NB | ========================
+2026-06-04 11:14:16 | INFO | EDA-NB | Executed successfully!
+2026-06-04 11:14:16 | INFO | EDA-NB | ========================
+2026-06-04 11:16:32 | INFO | EDA-NB | === RUN START ===
+2026-06-04 11:16:32 | INFO | EDA-NB | project=EDA-NB
+2026-06-04 11:16:32 | INFO | EDA-NB | repo_dir=datafun-04-notebooks
+2026-06-04 11:16:32 | INFO | EDA-NB | python=3.14.0
+2026-06-04 11:16:32 | INFO | EDA-NB | os=Windows 11
+2026-06-04 11:16:32 | INFO | EDA-NB | shell=powershell
+2026-06-04 11:16:32 | INFO | EDA-NB | cwd=notebooks
+2026-06-04 11:16:32 | INFO | EDA-NB | github_actions=False
+2026-06-04 11:16:32 | INFO | EDA-NB | Imports complete.
+2026-06-04 11:16:32 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:16:32 | INFO | EDA-NB | Loaded: 344 rows, 7 columns
+2026-06-04 11:16:32 | INFO | EDA-NB | Previewing first few rows of the dataset
+2026-06-04 11:16:32 | INFO | EDA-NB | Column names
+2026-06-04 11:16:32 | INFO | EDA-NB | DataFrame info (types and non-null counts)
+2026-06-04 11:16:32 | INFO | EDA-NB | Dataset shape: 344 rows, 7 columns
+2026-06-04 11:16:32 | INFO | EDA-NB | Building starter data dictionary
+2026-06-04 11:16:32 | DEBUG | EDA-NB | 
+              column    dtype  missing_count  missing_pct
+0            species      str              0         0.00
+1             island      str              0         0.00
+2     bill_length_mm  float64              2         0.58
+3      bill_depth_mm  float64              2         0.58
+4  flipper_length_mm  float64              2         0.58
+5        body_mass_g  float64              2         0.58
+6                sex      str             11         3.20
+2026-06-04 11:16:32 | INFO | EDA-NB | Missing values per column:
+2026-06-04 11:16:32 | INFO | EDA-NB | species               0
+island                0
+bill_length_mm        2
+bill_depth_mm         2
+flipper_length_mm     2
+body_mass_g           2
+sex                  11
+dtype: int64
+2026-06-04 11:16:32 | INFO | EDA-NB | Checking missing values per column
+2026-06-04 11:16:32 | DEBUG | EDA-NB | 
+sex                  11
+bill_depth_mm         2
+bill_length_mm        2
+flipper_length_mm     2
+body_mass_g           2
+island                0
+species               0
+dtype: int64
+2026-06-04 11:16:32 | INFO | EDA-NB | Duplicate rows detected: 0
+2026-06-04 11:16:32 | INFO | EDA-NB | Call describe() for numeric columns
+2026-06-04 11:16:32 | DEBUG | EDA-NB | 
+       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+
+2026-06-04 11:16:32 | DEBUG | EDA-NB | Columns required to be non-missing: ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'species']
+2026-06-04 11:16:32 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:16:32 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:16:32 | INFO | EDA-NB | Rows dropped:  2
+2026-06-04 11:16:32 | INFO | EDA-NB | --------------- Manual statistics ---------------
+2026-06-04 11:16:32 | INFO | EDA-NB | Body Mass Statistics (using numpy):
+2026-06-04 11:16:32 | INFO | EDA-NB |   Mean: 4201.75 g
+2026-06-04 11:16:32 | INFO | EDA-NB |   Std Dev: 800.78 g
+2026-06-04 11:16:32 | INFO | EDA-NB |   Min: 2700.00 g
+2026-06-04 11:16:32 | INFO | EDA-NB |   Max: 6300.00 g
+2026-06-04 11:16:32 | INFO | EDA-NB |   Range: 3600.00 g
+2026-06-04 11:16:32 | INFO | EDA-NB | Computing overall descriptive statistics
+2026-06-04 11:16:32 | DEBUG | EDA-NB | 
+                   count         mean         std     min       25%      50%     75%     max
+bill_length_mm     342.0    43.921930    5.459584    32.1    39.225    44.45    48.5    59.6
+bill_depth_mm      342.0    17.151170    1.974793    13.1    15.600    17.30    18.7    21.5
+flipper_length_mm  342.0   200.915205   14.061714   172.0   190.000   197.00   213.0   231.0
+body_mass_g        342.0  4201.754386  801.954536  2700.0  3550.000  4050.00  4750.0  6300.0
+2026-06-04 11:16:32 | INFO | EDA-NB | --------------- Using pandas groupby() and agg() ---------------
+2026-06-04 11:16:32 | INFO | EDA-NB | Computing descriptive statistics by group
+2026-06-04 11:16:32 | DEBUG | EDA-NB | 
+          bill_length_mm                                  bill_depth_mm                                   \
+                   count       mean       std   min   max         count       mean       std   min   max   
+species                                                                                                    
+Adelie               151  38.791391  2.663405  32.1  46.0           151  18.346358  1.216650  15.5  21.5   
+Chinstrap             68  48.833824  3.339256  40.9  58.0            68  18.420588  1.135395  16.4  20.8   
+Gentoo               123  47.504878  3.081857  40.9  59.6           123  14.982114  0.981220  13.1  17.3   
+
+          flipper_length_mm                                     body_mass_g                                           
+                      count        mean       std    min    max       count         mean         std     min     max  
+species                                                                                                               
+Adelie                  151  189.953642  6.539457  172.0  210.0         151  3700.662252  458.566126  2850.0  4775.0  
+Chinstrap                68  195.823529  7.131894  178.0  212.0          68  3733.088235  384.335081  2700.0  4800.0  
+Gentoo                  123  217.186992  6.484976  203.0  231.0         123  5076.016260  504.116237  3950.0  6300.0  
+2026-06-04 11:16:32 | INFO | EDA-NB | --------------- Improving the output ---------------
+2026-06-04 11:16:32 | DEBUG | EDA-NB | 
+                             count         mean         std     min     max
+species                                                                    
+Adelie    bill_length_mm       151    38.791391    2.663405    32.1    46.0
+          bill_depth_mm        151    18.346358    1.216650    15.5    21.5
+          flipper_length_mm    151   189.953642    6.539457   172.0   210.0
+          body_mass_g          151  3700.662252  458.566126  2850.0  4775.0
+Chinstrap bill_length_mm        68    48.833824    3.339256    40.9    58.0
+          bill_depth_mm         68    18.420588    1.135395    16.4    20.8
+          flipper_length_mm     68   195.823529    7.131894   178.0   212.0
+          body_mass_g           68  3733.088235  384.335081  2700.0  4800.0
+Gentoo    bill_length_mm       123    47.504878    3.081857    40.9    59.6
+          bill_depth_mm        123    14.982114    0.981220    13.1    17.3
+          flipper_length_mm    123   217.186992    6.484976   203.0   231.0
+          body_mass_g          123  5076.016260  504.116237  3950.0  6300.0
+2026-06-04 11:16:32 | INFO | EDA-NB | Computing correlation matrix for numeric columns
+2026-06-04 11:16:32 | INFO | EDA-NB | 
+Correlation matrix:
+2026-06-04 11:16:32 | DEBUG | EDA-NB | 
+                   bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+bill_length_mm           1.000000      -0.235053           0.656181     0.595110
+bill_depth_mm           -0.235053       1.000000          -0.583851    -0.471916
+flipper_length_mm        0.656181      -0.583851           1.000000     0.871202
+body_mass_g              0.595110      -0.471916           0.871202     1.000000
+2026-06-04 11:16:32 | INFO | EDA-NB | ---------Visualize Correlation Matrix as a Heatmap---------------
+2026-06-04 11:16:33 | INFO | EDA-NB | ---- Creating Scatter Plot to see Relationships ------
+2026-06-04 11:16:33 | INFO | EDA-NB | ----   Use clean dataframe ---------------------------
+2026-06-04 11:16:33 | INFO | EDA-NB | ----   Set x to flipper length -----------------------
+2026-06-04 11:16:33 | INFO | EDA-NB | ----   Set y to bill length --------------------------
+2026-06-04 11:16:33 | INFO | EDA-NB | ----   Set the hue (color mapping) to the group column --
+2026-06-04 11:16:33 | INFO | EDA-NB | ------- Creating another chart -------
+2026-06-04 11:16:33 | INFO | EDA-NB | ------ Creating Box Plot to see Distribution: ---------
+2026-06-04 11:16:33 | INFO | EDA-NB | ------   Use clean dataframe --------------------------
+2026-06-04 11:16:33 | INFO | EDA-NB | ------   Set x to the group column --------------------
+2026-06-04 11:16:33 | INFO | EDA-NB | ------   Set y to flipper length ----------------------
+2026-06-04 11:16:34 | INFO | EDA-NB | Creating A Histogram
+2026-06-04 11:16:34 | INFO | EDA-NB | Creating A Histogram to see Distribution of flipper length compared by sex
+2026-06-04 11:16:34 | INFO | EDA-NB | ========================
+2026-06-04 11:16:34 | INFO | EDA-NB | SUMMARY
+2026-06-04 11:16:34 | INFO | EDA-NB | ========================
+2026-06-04 11:16:34 | INFO | EDA-NB | Dataset: penguins
+2026-06-04 11:16:34 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:16:34 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:16:34 | INFO | EDA-NB | Groups found in species: ['Adelie', 'Chinstrap', 'Gentoo']
+2026-06-04 11:16:34 | INFO | EDA-NB | Strongest correlation: 
+2026-06-04 11:16:34 | INFO | EDA-NB |   flipper_length_mm and body_mass_g (~0.87)
+2026-06-04 11:16:34 | INFO | EDA-NB | Suggested next step: 
+2026-06-04 11:16:34 | INFO | EDA-NB |   Model body_mass_g ~ flipper_length_mm with linear regression
+2026-06-04 11:16:34 | INFO | EDA-NB | See what other seaborn datasets you can load and explore with the same workflow!
+2026-06-04 11:16:34 | INFO | EDA-NB | Available seaborn datasets: ['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic']
+2026-06-04 11:16:34 | INFO | EDA-NB | get a sneak peek at the other datasets and see if any look interesting to explore with the same workflow!
+2026-06-04 11:16:34 | INFO | EDA-NB | Loading dataset: anagrams
+2026-06-04 11:16:34 | INFO | EDA-NB | Summary statistics anagrams:
+         subidr       num1      num2       num3
+count  20.00000  20.000000  20.00000  20.000000
+mean   10.50000   5.350000   5.97500   6.550000
+std     5.91608   1.843195   1.67391   1.099043
+min     1.00000   2.000000   3.00000   5.000000
+25%     5.75000   4.750000   5.00000   6.000000
+50%    10.50000   5.500000   5.50000   6.000000
+75%    15.25000   6.250000   7.25000   7.000000
+max    20.00000   8.000000   9.00000   9.000000
+
+2026-06-04 11:16:34 | INFO | EDA-NB | Loading dataset: anscombe
+2026-06-04 11:16:35 | INFO | EDA-NB | Summary statistics anscombe:
+               x          y
+count  44.000000  44.000000
+mean    9.000000   7.500682
+std     3.198837   1.958925
+min     4.000000   3.100000
+25%     7.000000   6.117500
+50%     8.000000   7.520000
+75%    11.000000   8.747500
+max    19.000000  12.740000
+
+2026-06-04 11:16:35 | INFO | EDA-NB | Loading dataset: attention
+2026-06-04 11:16:35 | INFO | EDA-NB | Summary statistics attention:
+       Unnamed: 0    subject  solutions      score
+count   60.000000  60.000000  60.000000  60.000000
+mean    29.500000  10.500000   2.000000   5.958333
+std     17.464249   5.814943   0.823387   1.621601
+min      0.000000   1.000000   1.000000   2.000000
+25%     14.750000   5.750000   1.000000   5.000000
+50%     29.500000  10.500000   2.000000   6.000000
+75%     44.250000  15.250000   3.000000   7.000000
+max     59.000000  20.000000   3.000000   9.000000
+
+2026-06-04 11:16:35 | INFO | EDA-NB | Loading dataset: brain_networks
+2026-06-04 11:16:35 | INFO | EDA-NB | Summary statistics brain_networks:
+       network    1  1.1    2  2.1    3  3.1    4  4.1    5  5.1    6  6.1  6.2  6.3    7                7.1  7.2  \
+count      922  922  922  922  922  922  922  922  922  922  922  922  922  922  922  922                922  922   
+unique     922  922  922  922  922  922  922  922  922  922  922  922  922  922  922  922                921  922   
+top       node    1    1    1    1    1    1    1    1    1    1    1    1    2    2    1  -11.4418306350708    2   
+freq         1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1                  2    1   
+
+                     7.3  7.4  7.5    8  8.1  8.2  8.3  ...   13 13.1 13.2 13.3 13.4 13.5   14 14.1   15 15.1   16  \
+count                922  922  922  922  922  922  922  ...  922  922  922  922  922  922  922  922  922  922  922   
+unique               921  922  922  922  922  922  922  ...  922  922  922  922  922  922  922  922  922  922  922   
+top     60.3055534362793    3    3    1    1    2    2  ...    1    1    2    2    3    4    1    1    1    1    1   
+freq                   2    1    1    1    1    1    1  ...    1    1    1    1    1    1    1    1    1    1    1   
+
+       16.1 16.2 16.3 16.4 16.5 16.6 16.7   17 17.1 17.2 17.3 17.4 17.5 17.6  
+count   922  922  922  922  922  922  922  922  922  922  922  922  922  922  
+unique  922  922  922  922  922  922  922  922  922  922  922  922  922  922  
+top       1    2    2    3    3    4    4    1    1    2    2    3    3    4  
+freq      1    1    1    1    1    1    1    1    1    1    1    1    1    1  
+
+[4 rows x 63 columns]
+
+2026-06-04 11:16:35 | INFO | EDA-NB | Loading dataset: car_crashes
+2026-06-04 11:16:36 | INFO | EDA-NB | Summary statistics car_crashes:
+           total   speeding    alcohol  not_distracted  no_previous  ins_premium  ins_losses
+count  51.000000  51.000000  51.000000       51.000000    51.000000    51.000000   51.000000
+mean   15.790196   4.998196   4.886784       13.573176    14.004882   886.957647  134.493137
+std     4.122002   2.017747   1.729133        4.508977     3.764672   178.296285   24.835922
+min     5.900000   1.792000   1.593000        1.760000     5.900000   641.960000   82.750000
+25%    12.750000   3.766500   3.894000       10.478000    11.348000   768.430000  114.645000
+50%    15.600000   4.608000   4.554000       13.857000    13.775000   858.970000  136.050000
+75%    18.500000   6.439000   5.604000       16.140000    16.755000  1007.945000  151.870000
+max    23.900000   9.450000  10.038000       23.661000    21.280000  1301.520000  194.780000
+
+2026-06-04 11:16:36 | INFO | EDA-NB | Loading dataset: diamonds
+2026-06-04 11:16:36 | INFO | EDA-NB | Summary statistics diamonds:
+              carat         depth         table         price             x             y             z
+count  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000
+mean       0.797940     61.749405     57.457184   3932.799722      5.731157      5.734526      3.538734
+std        0.474011      1.432621      2.234491   3989.439738      1.121761      1.142135      0.705699
+min        0.200000     43.000000     43.000000    326.000000      0.000000      0.000000      0.000000
+25%        0.400000     61.000000     56.000000    950.000000      4.710000      4.720000      2.910000
+50%        0.700000     61.800000     57.000000   2401.000000      5.700000      5.710000      3.530000
+75%        1.040000     62.500000     59.000000   5324.250000      6.540000      6.540000      4.040000
+max        5.010000     79.000000     95.000000  18823.000000     10.740000     58.900000     31.800000
+
+2026-06-04 11:16:36 | INFO | EDA-NB | Loading dataset: dots
+2026-06-04 11:16:36 | INFO | EDA-NB | Summary statistics dots:
+             time   coherence  firing_rate
+count  848.000000  848.000000   848.000000
+mean    74.150943   12.898113    39.616662
+std    284.596669   15.453506    12.232967
+min   -600.000000    0.000000     6.275720
+25%   -100.000000    3.200000    32.620191
+50%     80.000000    6.400000    38.022005
+75%    260.000000   12.800000    47.383649
+max    720.000000   51.200000    70.048900
+
+2026-06-04 11:16:36 | INFO | EDA-NB | Loading dataset: dowjones
+2026-06-04 11:16:37 | INFO | EDA-NB | Summary statistics dowjones:
+                             Date       Price
+count                         649  649.000000
+mean   1941-11-30 17:42:48.258860  290.807319
+min           1914-12-01 00:00:00   46.850000
+25%           1928-06-01 00:00:00  106.900000
+50%           1941-12-01 00:00:00  172.270000
+75%           1955-06-01 00:00:00  436.730000
+max           1968-12-01 00:00:00  985.930000
+std                           NaN  256.062906
+
+2026-06-04 11:16:37 | INFO | EDA-NB | Loading dataset: exercise
+2026-06-04 11:16:37 | INFO | EDA-NB | Summary statistics exercise:
+       Unnamed: 0         id       pulse
+count   90.000000  90.000000   90.000000
+mean    44.500000  15.500000   99.700000
+std     26.124701   8.703932   14.858471
+min      0.000000   1.000000   80.000000
+25%     22.250000   8.000000   90.250000
+50%     44.500000  15.500000   96.000000
+75%     66.750000  23.000000  103.000000
+max     89.000000  30.000000  150.000000
+
+2026-06-04 11:16:37 | INFO | EDA-NB | Loading dataset: flights
+2026-06-04 11:16:37 | INFO | EDA-NB | Summary statistics flights:
+              year  passengers
+count   144.000000  144.000000
+mean   1954.500000  280.298611
+std       3.464102  119.966317
+min    1949.000000  104.000000
+25%    1951.750000  180.000000
+50%    1954.500000  265.500000
+75%    1957.250000  360.500000
+max    1960.000000  622.000000
+
+2026-06-04 11:16:37 | INFO | EDA-NB | Loading dataset: fmri
+2026-06-04 11:16:37 | INFO | EDA-NB | Summary statistics fmri:
+         timepoint       signal
+count  1064.000000  1064.000000
+mean      9.000000     0.003540
+std       5.479801     0.093930
+min       0.000000    -0.255486
+25%       4.000000    -0.046070
+50%       9.000000    -0.013653
+75%      14.000000     0.024293
+max      18.000000     0.564985
+
+2026-06-04 11:16:37 | INFO | EDA-NB | Loading dataset: geyser
+2026-06-04 11:16:37 | INFO | EDA-NB | Summary statistics geyser:
+         duration     waiting
+count  272.000000  272.000000
+mean     3.487783   70.897059
+std      1.141371   13.594974
+min      1.600000   43.000000
+25%      2.162750   58.000000
+50%      4.000000   76.000000
+75%      4.454250   82.000000
+max      5.100000   96.000000
+
+2026-06-04 11:16:37 | INFO | EDA-NB | Loading dataset: glue
+2026-06-04 11:16:38 | INFO | EDA-NB | Summary statistics glue:
+              Year      Score
+count    64.000000  64.000000
+mean   2018.000000  75.579688
+std       0.872872  19.289698
+min    2017.000000  11.600000
+25%    2017.000000  66.800000
+50%    2018.000000  75.500000
+75%    2019.000000  92.225000
+max    2019.000000  97.800000
+
+2026-06-04 11:16:38 | INFO | EDA-NB | Loading dataset: healthexp
+2026-06-04 11:16:38 | INFO | EDA-NB | Summary statistics healthexp:
+              Year  Spending_USD  Life_Expectancy
+count   274.000000    274.000000       274.000000
+mean   1996.992701   2789.338905        77.909489
+std      14.180933   2194.939785         3.276263
+min    1970.000000    123.993000        70.600000
+25%    1985.250000   1038.357000        75.525000
+50%    1998.000000   2295.578000        78.100000
+75%    2009.000000   4055.610000        80.575000
+max    2020.000000  11859.179000        84.700000
+
+2026-06-04 11:16:38 | INFO | EDA-NB | Loading dataset: iris
+2026-06-04 11:16:38 | INFO | EDA-NB | Summary statistics iris:
+       sepal_length  sepal_width  petal_length  petal_width
+count    150.000000   150.000000    150.000000   150.000000
+mean       5.843333     3.057333      3.758000     1.199333
+std        0.828066     0.435866      1.765298     0.762238
+min        4.300000     2.000000      1.000000     0.100000
+25%        5.100000     2.800000      1.600000     0.300000
+50%        5.800000     3.000000      4.350000     1.300000
+75%        6.400000     3.300000      5.100000     1.800000
+max        7.900000     4.400000      6.900000     2.500000
+
+2026-06-04 11:16:38 | INFO | EDA-NB | Loading dataset: mpg
+2026-06-04 11:16:38 | INFO | EDA-NB | Summary statistics mpg:
+              mpg   cylinders  displacement  horsepower       weight  acceleration  model_year
+count  398.000000  398.000000    398.000000  392.000000   398.000000    398.000000  398.000000
+mean    23.514573    5.454774    193.425879  104.469388  2970.424623     15.568090   76.010050
+std      7.815984    1.701004    104.269838   38.491160   846.841774      2.757689    3.697627
+min      9.000000    3.000000     68.000000   46.000000  1613.000000      8.000000   70.000000
+25%     17.500000    4.000000    104.250000   75.000000  2223.750000     13.825000   73.000000
+50%     23.000000    4.000000    148.500000   93.500000  2803.500000     15.500000   76.000000
+75%     29.000000    8.000000    262.000000  126.000000  3608.000000     17.175000   79.000000
+max     46.600000    8.000000    455.000000  230.000000  5140.000000     24.800000   82.000000
+
+2026-06-04 11:16:38 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:16:38 | INFO | EDA-NB | Summary statistics penguins:
+       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+
+2026-06-04 11:16:38 | INFO | EDA-NB | Loading dataset: planets
+2026-06-04 11:16:39 | INFO | EDA-NB | Summary statistics planets:
+            number  orbital_period        mass     distance         year
+count  1035.000000      992.000000  513.000000   808.000000  1035.000000
+mean      1.785507     2002.917596    2.638161   264.069282  2009.070531
+std       1.240976    26014.728304    3.818617   733.116493     3.972567
+min       1.000000        0.090706    0.003600     1.350000  1989.000000
+25%       1.000000        5.442540    0.229000    32.560000  2007.000000
+50%       1.000000       39.979500    1.260000    55.250000  2010.000000
+75%       2.000000      526.005000    3.040000   178.500000  2012.000000
+max       7.000000   730000.000000   25.000000  8500.000000  2014.000000
+
+2026-06-04 11:16:39 | INFO | EDA-NB | Loading dataset: seaice
+2026-06-04 11:16:39 | INFO | EDA-NB | Summary statistics seaice:
+                             Date        Extent
+count                       13175  13175.000000
+mean   2001-09-30 12:50:39.574952     11.289508
+min           1980-01-01 00:00:00      3.340000
+25%           1992-12-11 12:00:00      8.551500
+50%           2001-12-18 00:00:00     11.982000
+75%           2010-12-24 12:00:00     14.204500
+max           2019-12-31 00:00:00     16.412000
+std                           NaN      3.284901
+
+2026-06-04 11:16:39 | INFO | EDA-NB | Loading dataset: taxis
+2026-06-04 11:16:40 | INFO | EDA-NB | Summary statistics taxis:
+                           pickup                     dropoff   passengers     distance         fare         tip  \
+count                        6433                        6433  6433.000000  6433.000000  6433.000000  6433.00000   
+mean   2019-03-16 08:31:28.514223  2019-03-16 08:45:49.491216     1.539251     3.024617    13.091073     1.97922   
+min           2019-02-28 23:29:03         2019-02-28 23:32:35     0.000000     0.000000     1.000000     0.00000   
+25%           2019-03-08 15:50:34         2019-03-08 16:12:51     1.000000     0.980000     6.500000     0.00000   
+50%           2019-03-15 21:46:58         2019-03-15 22:06:44     1.000000     1.640000     9.500000     1.70000   
+75%           2019-03-23 17:41:38         2019-03-23 17:51:56     2.000000     3.210000    15.000000     2.80000   
+max           2019-03-31 23:43:45         2019-04-01 00:13:58     6.000000    36.700000   150.000000    33.20000   
+std                           NaN                         NaN     1.203768     3.827867    11.551804     2.44856   
+
+             tolls        total  
+count  6433.000000  6433.000000  
+mean      0.325273    18.517794  
+min       0.000000     1.300000  
+25%       0.000000    10.800000  
+50%       0.000000    14.160000  
+75%       0.000000    20.300000  
+max      24.020000   174.820000  
+std       1.415267    13.815570  
+
+2026-06-04 11:16:40 | INFO | EDA-NB | Loading dataset: tips
+2026-06-04 11:16:40 | INFO | EDA-NB | Summary statistics tips:
+       total_bill         tip        size
+count  244.000000  244.000000  244.000000
+mean    19.785943    2.998279    2.569672
+std      8.902412    1.383638    0.951100
+min      3.070000    1.000000    1.000000
+25%     13.347500    2.000000    2.000000
+50%     17.795000    2.900000    2.000000
+75%     24.127500    3.562500    3.000000
+max     50.810000   10.000000    6.000000
+
+2026-06-04 11:16:40 | INFO | EDA-NB | Loading dataset: titanic
+2026-06-04 11:16:40 | INFO | EDA-NB | Summary statistics titanic:
+         survived      pclass         age       sibsp       parch        fare
+count  891.000000  891.000000  714.000000  891.000000  891.000000  891.000000
+mean     0.383838    2.308642   29.699118    0.523008    0.381594   32.204208
+std      0.486592    0.836071   14.526497    1.102743    0.806057   49.693429
+min      0.000000    1.000000    0.420000    0.000000    0.000000    0.000000
+25%      0.000000    2.000000   20.125000    0.000000    0.000000    7.910400
+50%      0.000000    3.000000   28.000000    0.000000    0.000000   14.454200
+75%      1.000000    3.000000   38.000000    1.000000    0.000000   31.000000
+max      1.000000    3.000000   80.000000    8.000000    6.000000  512.329200
+
+2026-06-04 11:16:40 | INFO | EDA-NB | EDA workflow complete
+2026-06-04 11:16:40 | INFO | EDA-NB | IMPORTANT: This script creates chart windows.
+2026-06-04 11:16:40 | INFO | EDA-NB | Close any chart windows and terminate this process with CTRL+c as needed.
+2026-06-04 11:16:40 | INFO | EDA-NB | ========================
+2026-06-04 11:16:40 | INFO | EDA-NB | Executed successfully!
+2026-06-04 11:16:40 | INFO | EDA-NB | ========================
+2026-06-04 11:18:57 | INFO | EDA-NB | === RUN START ===
+2026-06-04 11:18:57 | INFO | EDA-NB | project=EDA-NB
+2026-06-04 11:18:57 | INFO | EDA-NB | repo_dir=datafun-04-notebooks
+2026-06-04 11:18:57 | INFO | EDA-NB | python=3.14.0
+2026-06-04 11:18:57 | INFO | EDA-NB | os=Windows 11
+2026-06-04 11:18:57 | INFO | EDA-NB | shell=powershell
+2026-06-04 11:18:57 | INFO | EDA-NB | cwd=notebooks
+2026-06-04 11:18:57 | INFO | EDA-NB | github_actions=False
+2026-06-04 11:18:57 | INFO | EDA-NB | Imports complete.
+2026-06-04 11:18:57 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:18:57 | INFO | EDA-NB | Loaded: 344 rows, 7 columns
+2026-06-04 11:18:57 | INFO | EDA-NB | Previewing first few rows of the dataset
+2026-06-04 11:18:58 | INFO | EDA-NB | Column names
+2026-06-04 11:18:58 | INFO | EDA-NB | DataFrame info (types and non-null counts)
+2026-06-04 11:18:58 | INFO | EDA-NB | Dataset shape: 344 rows, 7 columns
+2026-06-04 11:18:58 | INFO | EDA-NB | Building starter data dictionary
+2026-06-04 11:18:58 | DEBUG | EDA-NB | 
+              column    dtype  missing_count  missing_pct
+0            species      str              0         0.00
+1             island      str              0         0.00
+2     bill_length_mm  float64              2         0.58
+3      bill_depth_mm  float64              2         0.58
+4  flipper_length_mm  float64              2         0.58
+5        body_mass_g  float64              2         0.58
+6                sex      str             11         3.20
+2026-06-04 11:18:58 | INFO | EDA-NB | Missing values per column:
+2026-06-04 11:18:58 | INFO | EDA-NB | species               0
+island                0
+bill_length_mm        2
+bill_depth_mm         2
+flipper_length_mm     2
+body_mass_g           2
+sex                  11
+dtype: int64
+2026-06-04 11:18:58 | INFO | EDA-NB | Checking missing values per column
+2026-06-04 11:18:58 | DEBUG | EDA-NB | 
+sex                  11
+bill_depth_mm         2
+bill_length_mm        2
+flipper_length_mm     2
+body_mass_g           2
+island                0
+species               0
+dtype: int64
+2026-06-04 11:18:58 | INFO | EDA-NB | Duplicate rows detected: 0
+2026-06-04 11:18:58 | INFO | EDA-NB | Call describe() for numeric columns
+2026-06-04 11:18:58 | DEBUG | EDA-NB | 
+       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+
+2026-06-04 11:18:58 | DEBUG | EDA-NB | Columns required to be non-missing: ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'species']
+2026-06-04 11:18:58 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:18:58 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:18:58 | INFO | EDA-NB | Rows dropped:  2
+2026-06-04 11:18:58 | INFO | EDA-NB | --------------- Manual statistics ---------------
+2026-06-04 11:18:58 | INFO | EDA-NB | Body Mass Statistics (using numpy):
+2026-06-04 11:18:58 | INFO | EDA-NB |   Mean: 4201.75 g
+2026-06-04 11:18:58 | INFO | EDA-NB |   Std Dev: 800.78 g
+2026-06-04 11:18:58 | INFO | EDA-NB |   Min: 2700.00 g
+2026-06-04 11:18:58 | INFO | EDA-NB |   Max: 6300.00 g
+2026-06-04 11:18:58 | INFO | EDA-NB |   Range: 3600.00 g
+2026-06-04 11:18:58 | INFO | EDA-NB | Computing overall descriptive statistics
+2026-06-04 11:18:58 | DEBUG | EDA-NB | 
+                   count         mean         std     min       25%      50%     75%     max
+bill_length_mm     342.0    43.921930    5.459584    32.1    39.225    44.45    48.5    59.6
+bill_depth_mm      342.0    17.151170    1.974793    13.1    15.600    17.30    18.7    21.5
+flipper_length_mm  342.0   200.915205   14.061714   172.0   190.000   197.00   213.0   231.0
+body_mass_g        342.0  4201.754386  801.954536  2700.0  3550.000  4050.00  4750.0  6300.0
+2026-06-04 11:18:58 | INFO | EDA-NB | --------------- Using pandas groupby() and agg() ---------------
+2026-06-04 11:18:58 | INFO | EDA-NB | Computing descriptive statistics by group
+2026-06-04 11:18:58 | DEBUG | EDA-NB | 
+          bill_length_mm                                  bill_depth_mm                                   \
+                   count       mean       std   min   max         count       mean       std   min   max   
+species                                                                                                    
+Adelie               151  38.791391  2.663405  32.1  46.0           151  18.346358  1.216650  15.5  21.5   
+Chinstrap             68  48.833824  3.339256  40.9  58.0            68  18.420588  1.135395  16.4  20.8   
+Gentoo               123  47.504878  3.081857  40.9  59.6           123  14.982114  0.981220  13.1  17.3   
+
+          flipper_length_mm                                     body_mass_g                                           
+                      count        mean       std    min    max       count         mean         std     min     max  
+species                                                                                                               
+Adelie                  151  189.953642  6.539457  172.0  210.0         151  3700.662252  458.566126  2850.0  4775.0  
+Chinstrap                68  195.823529  7.131894  178.0  212.0          68  3733.088235  384.335081  2700.0  4800.0  
+Gentoo                  123  217.186992  6.484976  203.0  231.0         123  5076.016260  504.116237  3950.0  6300.0  
+2026-06-04 11:18:58 | INFO | EDA-NB | --------------- Improving the output ---------------
+2026-06-04 11:18:58 | DEBUG | EDA-NB | 
+                             count         mean         std     min     max
+species                                                                    
+Adelie    bill_length_mm       151    38.791391    2.663405    32.1    46.0
+          bill_depth_mm        151    18.346358    1.216650    15.5    21.5
+          flipper_length_mm    151   189.953642    6.539457   172.0   210.0
+          body_mass_g          151  3700.662252  458.566126  2850.0  4775.0
+Chinstrap bill_length_mm        68    48.833824    3.339256    40.9    58.0
+          bill_depth_mm         68    18.420588    1.135395    16.4    20.8
+          flipper_length_mm     68   195.823529    7.131894   178.0   212.0
+          body_mass_g           68  3733.088235  384.335081  2700.0  4800.0
+Gentoo    bill_length_mm       123    47.504878    3.081857    40.9    59.6
+          bill_depth_mm        123    14.982114    0.981220    13.1    17.3
+          flipper_length_mm    123   217.186992    6.484976   203.0   231.0
+          body_mass_g          123  5076.016260  504.116237  3950.0  6300.0
+2026-06-04 11:18:58 | INFO | EDA-NB | Computing correlation matrix for numeric columns
+2026-06-04 11:18:58 | INFO | EDA-NB | 
+Correlation matrix:
+2026-06-04 11:18:58 | DEBUG | EDA-NB | 
+                   bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+bill_length_mm           1.000000      -0.235053           0.656181     0.595110
+bill_depth_mm           -0.235053       1.000000          -0.583851    -0.471916
+flipper_length_mm        0.656181      -0.583851           1.000000     0.871202
+body_mass_g              0.595110      -0.471916           0.871202     1.000000
+2026-06-04 11:18:58 | INFO | EDA-NB | ---------Visualize Correlation Matrix as a Heatmap---------------
+2026-06-04 11:18:59 | INFO | EDA-NB | ---- Creating Scatter Plot to see Relationships ------
+2026-06-04 11:18:59 | INFO | EDA-NB | ----   Use clean dataframe ---------------------------
+2026-06-04 11:18:59 | INFO | EDA-NB | ----   Set x to flipper length -----------------------
+2026-06-04 11:18:59 | INFO | EDA-NB | ----   Set y to bill length --------------------------
+2026-06-04 11:18:59 | INFO | EDA-NB | ----   Set the hue (color mapping) to the group column --
+2026-06-04 11:18:59 | INFO | EDA-NB | ------- Creating another chart -------
+2026-06-04 11:18:59 | INFO | EDA-NB | ------ Creating Box Plot to see Distribution: ---------
+2026-06-04 11:18:59 | INFO | EDA-NB | ------   Use clean dataframe --------------------------
+2026-06-04 11:18:59 | INFO | EDA-NB | ------   Set x to the group column --------------------
+2026-06-04 11:18:59 | INFO | EDA-NB | ------   Set y to flipper length ----------------------
+2026-06-04 11:18:59 | INFO | EDA-NB | Creating A Histogram
+2026-06-04 11:18:59 | INFO | EDA-NB | Creating A Histogram to see Distribution of flipper length compared by sex
+2026-06-04 11:19:00 | INFO | EDA-NB | ========================
+2026-06-04 11:19:00 | INFO | EDA-NB | SUMMARY
+2026-06-04 11:19:00 | INFO | EDA-NB | ========================
+2026-06-04 11:19:00 | INFO | EDA-NB | Dataset: penguins
+2026-06-04 11:19:00 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:19:00 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:19:00 | INFO | EDA-NB | Groups found in species: ['Adelie', 'Chinstrap', 'Gentoo']
+2026-06-04 11:19:00 | INFO | EDA-NB | Strongest correlation: 
+2026-06-04 11:19:00 | INFO | EDA-NB |   flipper_length_mm and body_mass_g (~0.87)
+2026-06-04 11:19:00 | INFO | EDA-NB | Suggested next step: 
+2026-06-04 11:19:00 | INFO | EDA-NB |   Model body_mass_g ~ flipper_length_mm with linear regression
+2026-06-04 11:19:00 | INFO | EDA-NB | See what other seaborn datasets you can load and explore with the same workflow!
+2026-06-04 11:19:00 | INFO | EDA-NB | Available seaborn datasets: ['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic'], <class 'list'>
+2026-06-04 11:19:00 | INFO | EDA-NB | get a sneak peek at the other datasets and see if any look interesting to explore with the same workflow!
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: anagrams
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics anagrams:
+         subidr       num1      num2       num3
+count  20.00000  20.000000  20.00000  20.000000
+mean   10.50000   5.350000   5.97500   6.550000
+std     5.91608   1.843195   1.67391   1.099043
+min     1.00000   2.000000   3.00000   5.000000
+25%     5.75000   4.750000   5.00000   6.000000
+50%    10.50000   5.500000   5.50000   6.000000
+75%    15.25000   6.250000   7.25000   7.000000
+max    20.00000   8.000000   9.00000   9.000000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: anscombe
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics anscombe:
+               x          y
+count  44.000000  44.000000
+mean    9.000000   7.500682
+std     3.198837   1.958925
+min     4.000000   3.100000
+25%     7.000000   6.117500
+50%     8.000000   7.520000
+75%    11.000000   8.747500
+max    19.000000  12.740000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: attention
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics attention:
+       Unnamed: 0    subject  solutions      score
+count   60.000000  60.000000  60.000000  60.000000
+mean    29.500000  10.500000   2.000000   5.958333
+std     17.464249   5.814943   0.823387   1.621601
+min      0.000000   1.000000   1.000000   2.000000
+25%     14.750000   5.750000   1.000000   5.000000
+50%     29.500000  10.500000   2.000000   6.000000
+75%     44.250000  15.250000   3.000000   7.000000
+max     59.000000  20.000000   3.000000   9.000000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: brain_networks
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics brain_networks:
+       network    1  1.1    2  2.1    3  3.1    4  4.1    5  5.1    6  6.1  6.2  6.3    7                7.1  7.2  \
+count      922  922  922  922  922  922  922  922  922  922  922  922  922  922  922  922                922  922   
+unique     922  922  922  922  922  922  922  922  922  922  922  922  922  922  922  922                921  922   
+top       node    1    1    1    1    1    1    1    1    1    1    1    1    2    2    1  -11.4418306350708    2   
+freq         1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1                  2    1   
+
+                     7.3  7.4  7.5    8  8.1  8.2  8.3  ...   13 13.1 13.2 13.3 13.4 13.5   14 14.1   15 15.1   16  \
+count                922  922  922  922  922  922  922  ...  922  922  922  922  922  922  922  922  922  922  922   
+unique               921  922  922  922  922  922  922  ...  922  922  922  922  922  922  922  922  922  922  922   
+top     60.3055534362793    3    3    1    1    2    2  ...    1    1    2    2    3    4    1    1    1    1    1   
+freq                   2    1    1    1    1    1    1  ...    1    1    1    1    1    1    1    1    1    1    1   
+
+       16.1 16.2 16.3 16.4 16.5 16.6 16.7   17 17.1 17.2 17.3 17.4 17.5 17.6  
+count   922  922  922  922  922  922  922  922  922  922  922  922  922  922  
+unique  922  922  922  922  922  922  922  922  922  922  922  922  922  922  
+top       1    2    2    3    3    4    4    1    1    2    2    3    3    4  
+freq      1    1    1    1    1    1    1    1    1    1    1    1    1    1  
+
+[4 rows x 63 columns]
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: car_crashes
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics car_crashes:
+           total   speeding    alcohol  not_distracted  no_previous  ins_premium  ins_losses
+count  51.000000  51.000000  51.000000       51.000000    51.000000    51.000000   51.000000
+mean   15.790196   4.998196   4.886784       13.573176    14.004882   886.957647  134.493137
+std     4.122002   2.017747   1.729133        4.508977     3.764672   178.296285   24.835922
+min     5.900000   1.792000   1.593000        1.760000     5.900000   641.960000   82.750000
+25%    12.750000   3.766500   3.894000       10.478000    11.348000   768.430000  114.645000
+50%    15.600000   4.608000   4.554000       13.857000    13.775000   858.970000  136.050000
+75%    18.500000   6.439000   5.604000       16.140000    16.755000  1007.945000  151.870000
+max    23.900000   9.450000  10.038000       23.661000    21.280000  1301.520000  194.780000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: diamonds
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics diamonds:
+              carat         depth         table         price             x             y             z
+count  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000
+mean       0.797940     61.749405     57.457184   3932.799722      5.731157      5.734526      3.538734
+std        0.474011      1.432621      2.234491   3989.439738      1.121761      1.142135      0.705699
+min        0.200000     43.000000     43.000000    326.000000      0.000000      0.000000      0.000000
+25%        0.400000     61.000000     56.000000    950.000000      4.710000      4.720000      2.910000
+50%        0.700000     61.800000     57.000000   2401.000000      5.700000      5.710000      3.530000
+75%        1.040000     62.500000     59.000000   5324.250000      6.540000      6.540000      4.040000
+max        5.010000     79.000000     95.000000  18823.000000     10.740000     58.900000     31.800000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: dots
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics dots:
+             time   coherence  firing_rate
+count  848.000000  848.000000   848.000000
+mean    74.150943   12.898113    39.616662
+std    284.596669   15.453506    12.232967
+min   -600.000000    0.000000     6.275720
+25%   -100.000000    3.200000    32.620191
+50%     80.000000    6.400000    38.022005
+75%    260.000000   12.800000    47.383649
+max    720.000000   51.200000    70.048900
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: dowjones
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics dowjones:
+                             Date       Price
+count                         649  649.000000
+mean   1941-11-30 17:42:48.258860  290.807319
+min           1914-12-01 00:00:00   46.850000
+25%           1928-06-01 00:00:00  106.900000
+50%           1941-12-01 00:00:00  172.270000
+75%           1955-06-01 00:00:00  436.730000
+max           1968-12-01 00:00:00  985.930000
+std                           NaN  256.062906
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: exercise
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics exercise:
+       Unnamed: 0         id       pulse
+count   90.000000  90.000000   90.000000
+mean    44.500000  15.500000   99.700000
+std     26.124701   8.703932   14.858471
+min      0.000000   1.000000   80.000000
+25%     22.250000   8.000000   90.250000
+50%     44.500000  15.500000   96.000000
+75%     66.750000  23.000000  103.000000
+max     89.000000  30.000000  150.000000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: flights
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics flights:
+              year  passengers
+count   144.000000  144.000000
+mean   1954.500000  280.298611
+std       3.464102  119.966317
+min    1949.000000  104.000000
+25%    1951.750000  180.000000
+50%    1954.500000  265.500000
+75%    1957.250000  360.500000
+max    1960.000000  622.000000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: fmri
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics fmri:
+         timepoint       signal
+count  1064.000000  1064.000000
+mean      9.000000     0.003540
+std       5.479801     0.093930
+min       0.000000    -0.255486
+25%       4.000000    -0.046070
+50%       9.000000    -0.013653
+75%      14.000000     0.024293
+max      18.000000     0.564985
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: geyser
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics geyser:
+         duration     waiting
+count  272.000000  272.000000
+mean     3.487783   70.897059
+std      1.141371   13.594974
+min      1.600000   43.000000
+25%      2.162750   58.000000
+50%      4.000000   76.000000
+75%      4.454250   82.000000
+max      5.100000   96.000000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: glue
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics glue:
+              Year      Score
+count    64.000000  64.000000
+mean   2018.000000  75.579688
+std       0.872872  19.289698
+min    2017.000000  11.600000
+25%    2017.000000  66.800000
+50%    2018.000000  75.500000
+75%    2019.000000  92.225000
+max    2019.000000  97.800000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: healthexp
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics healthexp:
+              Year  Spending_USD  Life_Expectancy
+count   274.000000    274.000000       274.000000
+mean   1996.992701   2789.338905        77.909489
+std      14.180933   2194.939785         3.276263
+min    1970.000000    123.993000        70.600000
+25%    1985.250000   1038.357000        75.525000
+50%    1998.000000   2295.578000        78.100000
+75%    2009.000000   4055.610000        80.575000
+max    2020.000000  11859.179000        84.700000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: iris
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics iris:
+       sepal_length  sepal_width  petal_length  petal_width
+count    150.000000   150.000000    150.000000   150.000000
+mean       5.843333     3.057333      3.758000     1.199333
+std        0.828066     0.435866      1.765298     0.762238
+min        4.300000     2.000000      1.000000     0.100000
+25%        5.100000     2.800000      1.600000     0.300000
+50%        5.800000     3.000000      4.350000     1.300000
+75%        6.400000     3.300000      5.100000     1.800000
+max        7.900000     4.400000      6.900000     2.500000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: mpg
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics mpg:
+              mpg   cylinders  displacement  horsepower       weight  acceleration  model_year
+count  398.000000  398.000000    398.000000  392.000000   398.000000    398.000000  398.000000
+mean    23.514573    5.454774    193.425879  104.469388  2970.424623     15.568090   76.010050
+std      7.815984    1.701004    104.269838   38.491160   846.841774      2.757689    3.697627
+min      9.000000    3.000000     68.000000   46.000000  1613.000000      8.000000   70.000000
+25%     17.500000    4.000000    104.250000   75.000000  2223.750000     13.825000   73.000000
+50%     23.000000    4.000000    148.500000   93.500000  2803.500000     15.500000   76.000000
+75%     29.000000    8.000000    262.000000  126.000000  3608.000000     17.175000   79.000000
+max     46.600000    8.000000    455.000000  230.000000  5140.000000     24.800000   82.000000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics penguins:
+       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: planets
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics planets:
+            number  orbital_period        mass     distance         year
+count  1035.000000      992.000000  513.000000   808.000000  1035.000000
+mean      1.785507     2002.917596    2.638161   264.069282  2009.070531
+std       1.240976    26014.728304    3.818617   733.116493     3.972567
+min       1.000000        0.090706    0.003600     1.350000  1989.000000
+25%       1.000000        5.442540    0.229000    32.560000  2007.000000
+50%       1.000000       39.979500    1.260000    55.250000  2010.000000
+75%       2.000000      526.005000    3.040000   178.500000  2012.000000
+max       7.000000   730000.000000   25.000000  8500.000000  2014.000000
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: seaice
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics seaice:
+                             Date        Extent
+count                       13175  13175.000000
+mean   2001-09-30 12:50:39.574952     11.289508
+min           1980-01-01 00:00:00      3.340000
+25%           1992-12-11 12:00:00      8.551500
+50%           2001-12-18 00:00:00     11.982000
+75%           2010-12-24 12:00:00     14.204500
+max           2019-12-31 00:00:00     16.412000
+std                           NaN      3.284901
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: taxis
+2026-06-04 11:19:00 | INFO | EDA-NB | Summary statistics taxis:
+                           pickup                     dropoff   passengers     distance         fare         tip  \
+count                        6433                        6433  6433.000000  6433.000000  6433.000000  6433.00000   
+mean   2019-03-16 08:31:28.514223  2019-03-16 08:45:49.491216     1.539251     3.024617    13.091073     1.97922   
+min           2019-02-28 23:29:03         2019-02-28 23:32:35     0.000000     0.000000     1.000000     0.00000   
+25%           2019-03-08 15:50:34         2019-03-08 16:12:51     1.000000     0.980000     6.500000     0.00000   
+50%           2019-03-15 21:46:58         2019-03-15 22:06:44     1.000000     1.640000     9.500000     1.70000   
+75%           2019-03-23 17:41:38         2019-03-23 17:51:56     2.000000     3.210000    15.000000     2.80000   
+max           2019-03-31 23:43:45         2019-04-01 00:13:58     6.000000    36.700000   150.000000    33.20000   
+std                           NaN                         NaN     1.203768     3.827867    11.551804     2.44856   
+
+             tolls        total  
+count  6433.000000  6433.000000  
+mean      0.325273    18.517794  
+min       0.000000     1.300000  
+25%       0.000000    10.800000  
+50%       0.000000    14.160000  
+75%       0.000000    20.300000  
+max      24.020000   174.820000  
+std       1.415267    13.815570  
+
+2026-06-04 11:19:00 | INFO | EDA-NB | Loading dataset: tips
+2026-06-04 11:19:01 | INFO | EDA-NB | Summary statistics tips:
+       total_bill         tip        size
+count  244.000000  244.000000  244.000000
+mean    19.785943    2.998279    2.569672
+std      8.902412    1.383638    0.951100
+min      3.070000    1.000000    1.000000
+25%     13.347500    2.000000    2.000000
+50%     17.795000    2.900000    2.000000
+75%     24.127500    3.562500    3.000000
+max     50.810000   10.000000    6.000000
+
+2026-06-04 11:19:01 | INFO | EDA-NB | Loading dataset: titanic
+2026-06-04 11:19:01 | INFO | EDA-NB | Summary statistics titanic:
+         survived      pclass         age       sibsp       parch        fare
+count  891.000000  891.000000  714.000000  891.000000  891.000000  891.000000
+mean     0.383838    2.308642   29.699118    0.523008    0.381594   32.204208
+std      0.486592    0.836071   14.526497    1.102743    0.806057   49.693429
+min      0.000000    1.000000    0.420000    0.000000    0.000000    0.000000
+25%      0.000000    2.000000   20.125000    0.000000    0.000000    7.910400
+50%      0.000000    3.000000   28.000000    0.000000    0.000000   14.454200
+75%      1.000000    3.000000   38.000000    1.000000    0.000000   31.000000
+max      1.000000    3.000000   80.000000    8.000000    6.000000  512.329200
+
+2026-06-04 11:19:01 | INFO | EDA-NB | EDA workflow complete
+2026-06-04 11:19:01 | INFO | EDA-NB | IMPORTANT: This script creates chart windows.
+2026-06-04 11:19:01 | INFO | EDA-NB | Close any chart windows and terminate this process with CTRL+c as needed.
+2026-06-04 11:19:01 | INFO | EDA-NB | ========================
+2026-06-04 11:19:01 | INFO | EDA-NB | Executed successfully!
+2026-06-04 11:19:01 | INFO | EDA-NB | ========================
+2026-06-04 11:19:55 | INFO | EDA-NB | === RUN START ===
+2026-06-04 11:19:55 | INFO | EDA-NB | project=EDA-NB
+2026-06-04 11:19:55 | INFO | EDA-NB | repo_dir=datafun-04-notebooks
+2026-06-04 11:19:55 | INFO | EDA-NB | python=3.14.0
+2026-06-04 11:19:55 | INFO | EDA-NB | os=Windows 11
+2026-06-04 11:19:55 | INFO | EDA-NB | shell=powershell
+2026-06-04 11:19:55 | INFO | EDA-NB | cwd=notebooks
+2026-06-04 11:19:55 | INFO | EDA-NB | github_actions=False
+2026-06-04 11:19:55 | INFO | EDA-NB | Imports complete.
+2026-06-04 11:19:55 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:19:55 | INFO | EDA-NB | Loaded: 344 rows, 7 columns
+2026-06-04 11:19:55 | INFO | EDA-NB | Previewing first few rows of the dataset
+2026-06-04 11:19:55 | INFO | EDA-NB | Column names
+2026-06-04 11:19:55 | INFO | EDA-NB | DataFrame info (types and non-null counts)
+2026-06-04 11:19:55 | INFO | EDA-NB | Dataset shape: 344 rows, 7 columns
+2026-06-04 11:19:55 | INFO | EDA-NB | Building starter data dictionary
+2026-06-04 11:19:55 | DEBUG | EDA-NB | 
+              column    dtype  missing_count  missing_pct
+0            species      str              0         0.00
+1             island      str              0         0.00
+2     bill_length_mm  float64              2         0.58
+3      bill_depth_mm  float64              2         0.58
+4  flipper_length_mm  float64              2         0.58
+5        body_mass_g  float64              2         0.58
+6                sex      str             11         3.20
+2026-06-04 11:19:55 | INFO | EDA-NB | Missing values per column:
+2026-06-04 11:19:55 | INFO | EDA-NB | species               0
+island                0
+bill_length_mm        2
+bill_depth_mm         2
+flipper_length_mm     2
+body_mass_g           2
+sex                  11
+dtype: int64
+2026-06-04 11:19:55 | INFO | EDA-NB | Checking missing values per column
+2026-06-04 11:19:55 | DEBUG | EDA-NB | 
+sex                  11
+bill_depth_mm         2
+bill_length_mm        2
+flipper_length_mm     2
+body_mass_g           2
+island                0
+species               0
+dtype: int64
+2026-06-04 11:19:55 | INFO | EDA-NB | Duplicate rows detected: 0
+2026-06-04 11:19:55 | INFO | EDA-NB | Call describe() for numeric columns
+2026-06-04 11:19:55 | DEBUG | EDA-NB | 
+       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+
+2026-06-04 11:19:55 | DEBUG | EDA-NB | Columns required to be non-missing: ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'species']
+2026-06-04 11:19:55 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:19:55 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:19:55 | INFO | EDA-NB | Rows dropped:  2
+2026-06-04 11:19:55 | INFO | EDA-NB | --------------- Manual statistics ---------------
+2026-06-04 11:19:55 | INFO | EDA-NB | Body Mass Statistics (using numpy):
+2026-06-04 11:19:55 | INFO | EDA-NB |   Mean: 4201.75 g
+2026-06-04 11:19:55 | INFO | EDA-NB |   Std Dev: 800.78 g
+2026-06-04 11:19:55 | INFO | EDA-NB |   Min: 2700.00 g
+2026-06-04 11:19:55 | INFO | EDA-NB |   Max: 6300.00 g
+2026-06-04 11:19:55 | INFO | EDA-NB |   Range: 3600.00 g
+2026-06-04 11:19:55 | INFO | EDA-NB | Computing overall descriptive statistics
+2026-06-04 11:19:55 | DEBUG | EDA-NB | 
+                   count         mean         std     min       25%      50%     75%     max
+bill_length_mm     342.0    43.921930    5.459584    32.1    39.225    44.45    48.5    59.6
+bill_depth_mm      342.0    17.151170    1.974793    13.1    15.600    17.30    18.7    21.5
+flipper_length_mm  342.0   200.915205   14.061714   172.0   190.000   197.00   213.0   231.0
+body_mass_g        342.0  4201.754386  801.954536  2700.0  3550.000  4050.00  4750.0  6300.0
+2026-06-04 11:19:55 | INFO | EDA-NB | --------------- Using pandas groupby() and agg() ---------------
+2026-06-04 11:19:55 | INFO | EDA-NB | Computing descriptive statistics by group
+2026-06-04 11:19:55 | DEBUG | EDA-NB | 
+          bill_length_mm                                  bill_depth_mm                                   \
+                   count       mean       std   min   max         count       mean       std   min   max   
+species                                                                                                    
+Adelie               151  38.791391  2.663405  32.1  46.0           151  18.346358  1.216650  15.5  21.5   
+Chinstrap             68  48.833824  3.339256  40.9  58.0            68  18.420588  1.135395  16.4  20.8   
+Gentoo               123  47.504878  3.081857  40.9  59.6           123  14.982114  0.981220  13.1  17.3   
+
+          flipper_length_mm                                     body_mass_g                                           
+                      count        mean       std    min    max       count         mean         std     min     max  
+species                                                                                                               
+Adelie                  151  189.953642  6.539457  172.0  210.0         151  3700.662252  458.566126  2850.0  4775.0  
+Chinstrap                68  195.823529  7.131894  178.0  212.0          68  3733.088235  384.335081  2700.0  4800.0  
+Gentoo                  123  217.186992  6.484976  203.0  231.0         123  5076.016260  504.116237  3950.0  6300.0  
+2026-06-04 11:19:55 | INFO | EDA-NB | --------------- Improving the output ---------------
+2026-06-04 11:19:55 | DEBUG | EDA-NB | 
+                             count         mean         std     min     max
+species                                                                    
+Adelie    bill_length_mm       151    38.791391    2.663405    32.1    46.0
+          bill_depth_mm        151    18.346358    1.216650    15.5    21.5
+          flipper_length_mm    151   189.953642    6.539457   172.0   210.0
+          body_mass_g          151  3700.662252  458.566126  2850.0  4775.0
+Chinstrap bill_length_mm        68    48.833824    3.339256    40.9    58.0
+          bill_depth_mm         68    18.420588    1.135395    16.4    20.8
+          flipper_length_mm     68   195.823529    7.131894   178.0   212.0
+          body_mass_g           68  3733.088235  384.335081  2700.0  4800.0
+Gentoo    bill_length_mm       123    47.504878    3.081857    40.9    59.6
+          bill_depth_mm        123    14.982114    0.981220    13.1    17.3
+          flipper_length_mm    123   217.186992    6.484976   203.0   231.0
+          body_mass_g          123  5076.016260  504.116237  3950.0  6300.0
+2026-06-04 11:19:55 | INFO | EDA-NB | Computing correlation matrix for numeric columns
+2026-06-04 11:19:55 | INFO | EDA-NB | 
+Correlation matrix:
+2026-06-04 11:19:55 | DEBUG | EDA-NB | 
+                   bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+bill_length_mm           1.000000      -0.235053           0.656181     0.595110
+bill_depth_mm           -0.235053       1.000000          -0.583851    -0.471916
+flipper_length_mm        0.656181      -0.583851           1.000000     0.871202
+body_mass_g              0.595110      -0.471916           0.871202     1.000000
+2026-06-04 11:19:55 | INFO | EDA-NB | ---------Visualize Correlation Matrix as a Heatmap---------------
+2026-06-04 11:19:56 | INFO | EDA-NB | ---- Creating Scatter Plot to see Relationships ------
+2026-06-04 11:19:56 | INFO | EDA-NB | ----   Use clean dataframe ---------------------------
+2026-06-04 11:19:56 | INFO | EDA-NB | ----   Set x to flipper length -----------------------
+2026-06-04 11:19:56 | INFO | EDA-NB | ----   Set y to bill length --------------------------
+2026-06-04 11:19:56 | INFO | EDA-NB | ----   Set the hue (color mapping) to the group column --
+2026-06-04 11:19:56 | INFO | EDA-NB | ------- Creating another chart -------
+2026-06-04 11:19:56 | INFO | EDA-NB | ------ Creating Box Plot to see Distribution: ---------
+2026-06-04 11:19:56 | INFO | EDA-NB | ------   Use clean dataframe --------------------------
+2026-06-04 11:19:56 | INFO | EDA-NB | ------   Set x to the group column --------------------
+2026-06-04 11:19:56 | INFO | EDA-NB | ------   Set y to flipper length ----------------------
+2026-06-04 11:19:57 | INFO | EDA-NB | Creating A Histogram
+2026-06-04 11:19:57 | INFO | EDA-NB | Creating A Histogram to see Distribution of flipper length compared by sex
+2026-06-04 11:19:57 | INFO | EDA-NB | ========================
+2026-06-04 11:19:57 | INFO | EDA-NB | SUMMARY
+2026-06-04 11:19:57 | INFO | EDA-NB | ========================
+2026-06-04 11:19:57 | INFO | EDA-NB | Dataset: penguins
+2026-06-04 11:19:57 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:19:57 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:19:57 | INFO | EDA-NB | Groups found in species: ['Adelie', 'Chinstrap', 'Gentoo']
+2026-06-04 11:19:57 | INFO | EDA-NB | Strongest correlation: 
+2026-06-04 11:19:57 | INFO | EDA-NB |   flipper_length_mm and body_mass_g (~0.87)
+2026-06-04 11:19:57 | INFO | EDA-NB | Suggested next step: 
+2026-06-04 11:19:57 | INFO | EDA-NB |   Model body_mass_g ~ flipper_length_mm with linear regression
+2026-06-04 11:19:57 | INFO | EDA-NB | See what other seaborn datasets you can load and explore with the same workflow!
+2026-06-04 11:19:57 | INFO | EDA-NB | Available seaborn datasets: ['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic'], <class 'list'>
+2026-06-04 11:19:57 | INFO | EDA-NB | get a sneak peek at the other datasets and see if any look interesting to explore with the same workflow!
+2026-06-04 11:19:57 | INFO | EDA-NB | Loading dataset: anagrams
+2026-06-04 11:19:57 | INFO | EDA-NB |          subidr       num1      num2       num3
+count  20.00000  20.000000  20.00000  20.000000
+mean   10.50000   5.350000   5.97500   6.550000
+std     5.91608   1.843195   1.67391   1.099043
+min     1.00000   2.000000   3.00000   5.000000
+25%     5.75000   4.750000   5.00000   6.000000
+50%    10.50000   5.500000   5.50000   6.000000
+75%    15.25000   6.250000   7.25000   7.000000
+max    20.00000   8.000000   9.00000   9.000000
+2026-06-04 11:19:57 | INFO | EDA-NB | Loading dataset: anscombe
+2026-06-04 11:19:57 | INFO | EDA-NB |                x          y
+count  44.000000  44.000000
+mean    9.000000   7.500682
+std     3.198837   1.958925
+min     4.000000   3.100000
+25%     7.000000   6.117500
+50%     8.000000   7.520000
+75%    11.000000   8.747500
+max    19.000000  12.740000
+2026-06-04 11:19:57 | INFO | EDA-NB | Loading dataset: attention
+2026-06-04 11:19:57 | INFO | EDA-NB |        Unnamed: 0    subject  solutions      score
+count   60.000000  60.000000  60.000000  60.000000
+mean    29.500000  10.500000   2.000000   5.958333
+std     17.464249   5.814943   0.823387   1.621601
+min      0.000000   1.000000   1.000000   2.000000
+25%     14.750000   5.750000   1.000000   5.000000
+50%     29.500000  10.500000   2.000000   6.000000
+75%     44.250000  15.250000   3.000000   7.000000
+max     59.000000  20.000000   3.000000   9.000000
+2026-06-04 11:19:57 | INFO | EDA-NB | Loading dataset: brain_networks
+2026-06-04 11:19:57 | INFO | EDA-NB |        network    1  1.1    2  2.1    3  3.1    4  4.1    5  5.1    6  6.1  6.2  6.3    7                7.1  7.2  \
+count      922  922  922  922  922  922  922  922  922  922  922  922  922  922  922  922                922  922   
+unique     922  922  922  922  922  922  922  922  922  922  922  922  922  922  922  922                921  922   
+top       node    1    1    1    1    1    1    1    1    1    1    1    1    2    2    1  -11.4418306350708    2   
+freq         1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1                  2    1   
+
+                     7.3  7.4  7.5    8  8.1  8.2  8.3  ...   13 13.1 13.2 13.3 13.4 13.5   14 14.1   15 15.1   16  \
+count                922  922  922  922  922  922  922  ...  922  922  922  922  922  922  922  922  922  922  922   
+unique               921  922  922  922  922  922  922  ...  922  922  922  922  922  922  922  922  922  922  922   
+top     60.3055534362793    3    3    1    1    2    2  ...    1    1    2    2    3    4    1    1    1    1    1   
+freq                   2    1    1    1    1    1    1  ...    1    1    1    1    1    1    1    1    1    1    1   
+
+       16.1 16.2 16.3 16.4 16.5 16.6 16.7   17 17.1 17.2 17.3 17.4 17.5 17.6  
+count   922  922  922  922  922  922  922  922  922  922  922  922  922  922  
+unique  922  922  922  922  922  922  922  922  922  922  922  922  922  922  
+top       1    2    2    3    3    4    4    1    1    2    2    3    3    4  
+freq      1    1    1    1    1    1    1    1    1    1    1    1    1    1  
+
+[4 rows x 63 columns]
+2026-06-04 11:19:57 | INFO | EDA-NB | Loading dataset: car_crashes
+2026-06-04 11:19:57 | INFO | EDA-NB |            total   speeding    alcohol  not_distracted  no_previous  ins_premium  ins_losses
+count  51.000000  51.000000  51.000000       51.000000    51.000000    51.000000   51.000000
+mean   15.790196   4.998196   4.886784       13.573176    14.004882   886.957647  134.493137
+std     4.122002   2.017747   1.729133        4.508977     3.764672   178.296285   24.835922
+min     5.900000   1.792000   1.593000        1.760000     5.900000   641.960000   82.750000
+25%    12.750000   3.766500   3.894000       10.478000    11.348000   768.430000  114.645000
+50%    15.600000   4.608000   4.554000       13.857000    13.775000   858.970000  136.050000
+75%    18.500000   6.439000   5.604000       16.140000    16.755000  1007.945000  151.870000
+max    23.900000   9.450000  10.038000       23.661000    21.280000  1301.520000  194.780000
+2026-06-04 11:19:57 | INFO | EDA-NB | Loading dataset: diamonds
+2026-06-04 11:19:58 | INFO | EDA-NB |               carat         depth         table         price             x             y             z
+count  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000  53940.000000
+mean       0.797940     61.749405     57.457184   3932.799722      5.731157      5.734526      3.538734
+std        0.474011      1.432621      2.234491   3989.439738      1.121761      1.142135      0.705699
+min        0.200000     43.000000     43.000000    326.000000      0.000000      0.000000      0.000000
+25%        0.400000     61.000000     56.000000    950.000000      4.710000      4.720000      2.910000
+50%        0.700000     61.800000     57.000000   2401.000000      5.700000      5.710000      3.530000
+75%        1.040000     62.500000     59.000000   5324.250000      6.540000      6.540000      4.040000
+max        5.010000     79.000000     95.000000  18823.000000     10.740000     58.900000     31.800000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: dots
+2026-06-04 11:19:58 | INFO | EDA-NB |              time   coherence  firing_rate
+count  848.000000  848.000000   848.000000
+mean    74.150943   12.898113    39.616662
+std    284.596669   15.453506    12.232967
+min   -600.000000    0.000000     6.275720
+25%   -100.000000    3.200000    32.620191
+50%     80.000000    6.400000    38.022005
+75%    260.000000   12.800000    47.383649
+max    720.000000   51.200000    70.048900
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: dowjones
+2026-06-04 11:19:58 | INFO | EDA-NB |                              Date       Price
+count                         649  649.000000
+mean   1941-11-30 17:42:48.258860  290.807319
+min           1914-12-01 00:00:00   46.850000
+25%           1928-06-01 00:00:00  106.900000
+50%           1941-12-01 00:00:00  172.270000
+75%           1955-06-01 00:00:00  436.730000
+max           1968-12-01 00:00:00  985.930000
+std                           NaN  256.062906
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: exercise
+2026-06-04 11:19:58 | INFO | EDA-NB |        Unnamed: 0         id       pulse
+count   90.000000  90.000000   90.000000
+mean    44.500000  15.500000   99.700000
+std     26.124701   8.703932   14.858471
+min      0.000000   1.000000   80.000000
+25%     22.250000   8.000000   90.250000
+50%     44.500000  15.500000   96.000000
+75%     66.750000  23.000000  103.000000
+max     89.000000  30.000000  150.000000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: flights
+2026-06-04 11:19:58 | INFO | EDA-NB |               year  passengers
+count   144.000000  144.000000
+mean   1954.500000  280.298611
+std       3.464102  119.966317
+min    1949.000000  104.000000
+25%    1951.750000  180.000000
+50%    1954.500000  265.500000
+75%    1957.250000  360.500000
+max    1960.000000  622.000000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: fmri
+2026-06-04 11:19:58 | INFO | EDA-NB |          timepoint       signal
+count  1064.000000  1064.000000
+mean      9.000000     0.003540
+std       5.479801     0.093930
+min       0.000000    -0.255486
+25%       4.000000    -0.046070
+50%       9.000000    -0.013653
+75%      14.000000     0.024293
+max      18.000000     0.564985
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: geyser
+2026-06-04 11:19:58 | INFO | EDA-NB |          duration     waiting
+count  272.000000  272.000000
+mean     3.487783   70.897059
+std      1.141371   13.594974
+min      1.600000   43.000000
+25%      2.162750   58.000000
+50%      4.000000   76.000000
+75%      4.454250   82.000000
+max      5.100000   96.000000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: glue
+2026-06-04 11:19:58 | INFO | EDA-NB |               Year      Score
+count    64.000000  64.000000
+mean   2018.000000  75.579688
+std       0.872872  19.289698
+min    2017.000000  11.600000
+25%    2017.000000  66.800000
+50%    2018.000000  75.500000
+75%    2019.000000  92.225000
+max    2019.000000  97.800000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: healthexp
+2026-06-04 11:19:58 | INFO | EDA-NB |               Year  Spending_USD  Life_Expectancy
+count   274.000000    274.000000       274.000000
+mean   1996.992701   2789.338905        77.909489
+std      14.180933   2194.939785         3.276263
+min    1970.000000    123.993000        70.600000
+25%    1985.250000   1038.357000        75.525000
+50%    1998.000000   2295.578000        78.100000
+75%    2009.000000   4055.610000        80.575000
+max    2020.000000  11859.179000        84.700000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: iris
+2026-06-04 11:19:58 | INFO | EDA-NB |        sepal_length  sepal_width  petal_length  petal_width
+count    150.000000   150.000000    150.000000   150.000000
+mean       5.843333     3.057333      3.758000     1.199333
+std        0.828066     0.435866      1.765298     0.762238
+min        4.300000     2.000000      1.000000     0.100000
+25%        5.100000     2.800000      1.600000     0.300000
+50%        5.800000     3.000000      4.350000     1.300000
+75%        6.400000     3.300000      5.100000     1.800000
+max        7.900000     4.400000      6.900000     2.500000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: mpg
+2026-06-04 11:19:58 | INFO | EDA-NB |               mpg   cylinders  displacement  horsepower       weight  acceleration  model_year
+count  398.000000  398.000000    398.000000  392.000000   398.000000    398.000000  398.000000
+mean    23.514573    5.454774    193.425879  104.469388  2970.424623     15.568090   76.010050
+std      7.815984    1.701004    104.269838   38.491160   846.841774      2.757689    3.697627
+min      9.000000    3.000000     68.000000   46.000000  1613.000000      8.000000   70.000000
+25%     17.500000    4.000000    104.250000   75.000000  2223.750000     13.825000   73.000000
+50%     23.000000    4.000000    148.500000   93.500000  2803.500000     15.500000   76.000000
+75%     29.000000    8.000000    262.000000  126.000000  3608.000000     17.175000   79.000000
+max     46.600000    8.000000    455.000000  230.000000  5140.000000     24.800000   82.000000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:19:58 | INFO | EDA-NB |        bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: planets
+2026-06-04 11:19:58 | INFO | EDA-NB |             number  orbital_period        mass     distance         year
+count  1035.000000      992.000000  513.000000   808.000000  1035.000000
+mean      1.785507     2002.917596    2.638161   264.069282  2009.070531
+std       1.240976    26014.728304    3.818617   733.116493     3.972567
+min       1.000000        0.090706    0.003600     1.350000  1989.000000
+25%       1.000000        5.442540    0.229000    32.560000  2007.000000
+50%       1.000000       39.979500    1.260000    55.250000  2010.000000
+75%       2.000000      526.005000    3.040000   178.500000  2012.000000
+max       7.000000   730000.000000   25.000000  8500.000000  2014.000000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: seaice
+2026-06-04 11:19:58 | INFO | EDA-NB |                              Date        Extent
+count                       13175  13175.000000
+mean   2001-09-30 12:50:39.574952     11.289508
+min           1980-01-01 00:00:00      3.340000
+25%           1992-12-11 12:00:00      8.551500
+50%           2001-12-18 00:00:00     11.982000
+75%           2010-12-24 12:00:00     14.204500
+max           2019-12-31 00:00:00     16.412000
+std                           NaN      3.284901
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: taxis
+2026-06-04 11:19:58 | INFO | EDA-NB |                            pickup                     dropoff   passengers     distance         fare         tip  \
+count                        6433                        6433  6433.000000  6433.000000  6433.000000  6433.00000   
+mean   2019-03-16 08:31:28.514223  2019-03-16 08:45:49.491216     1.539251     3.024617    13.091073     1.97922   
+min           2019-02-28 23:29:03         2019-02-28 23:32:35     0.000000     0.000000     1.000000     0.00000   
+25%           2019-03-08 15:50:34         2019-03-08 16:12:51     1.000000     0.980000     6.500000     0.00000   
+50%           2019-03-15 21:46:58         2019-03-15 22:06:44     1.000000     1.640000     9.500000     1.70000   
+75%           2019-03-23 17:41:38         2019-03-23 17:51:56     2.000000     3.210000    15.000000     2.80000   
+max           2019-03-31 23:43:45         2019-04-01 00:13:58     6.000000    36.700000   150.000000    33.20000   
+std                           NaN                         NaN     1.203768     3.827867    11.551804     2.44856   
+
+             tolls        total  
+count  6433.000000  6433.000000  
+mean      0.325273    18.517794  
+min       0.000000     1.300000  
+25%       0.000000    10.800000  
+50%       0.000000    14.160000  
+75%       0.000000    20.300000  
+max      24.020000   174.820000  
+std       1.415267    13.815570  
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: tips
+2026-06-04 11:19:58 | INFO | EDA-NB |        total_bill         tip        size
+count  244.000000  244.000000  244.000000
+mean    19.785943    2.998279    2.569672
+std      8.902412    1.383638    0.951100
+min      3.070000    1.000000    1.000000
+25%     13.347500    2.000000    2.000000
+50%     17.795000    2.900000    2.000000
+75%     24.127500    3.562500    3.000000
+max     50.810000   10.000000    6.000000
+2026-06-04 11:19:58 | INFO | EDA-NB | Loading dataset: titanic
+2026-06-04 11:19:58 | INFO | EDA-NB |          survived      pclass         age       sibsp       parch        fare
+count  891.000000  891.000000  714.000000  891.000000  891.000000  891.000000
+mean     0.383838    2.308642   29.699118    0.523008    0.381594   32.204208
+std      0.486592    0.836071   14.526497    1.102743    0.806057   49.693429
+min      0.000000    1.000000    0.420000    0.000000    0.000000    0.000000
+25%      0.000000    2.000000   20.125000    0.000000    0.000000    7.910400
+50%      0.000000    3.000000   28.000000    0.000000    0.000000   14.454200
+75%      1.000000    3.000000   38.000000    1.000000    0.000000   31.000000
+max      1.000000    3.000000   80.000000    8.000000    6.000000  512.329200
+2026-06-04 11:19:58 | INFO | EDA-NB | EDA workflow complete
+2026-06-04 11:19:58 | INFO | EDA-NB | IMPORTANT: This script creates chart windows.
+2026-06-04 11:19:58 | INFO | EDA-NB | Close any chart windows and terminate this process with CTRL+c as needed.
+2026-06-04 11:19:58 | INFO | EDA-NB | ========================
+2026-06-04 11:19:58 | INFO | EDA-NB | Executed successfully!
+2026-06-04 11:19:58 | INFO | EDA-NB | ========================
+2026-06-04 11:20:44 | INFO | EDA-NB | === RUN START ===
+2026-06-04 11:20:44 | INFO | EDA-NB | project=EDA-NB
+2026-06-04 11:20:44 | INFO | EDA-NB | repo_dir=datafun-04-notebooks
+2026-06-04 11:20:44 | INFO | EDA-NB | python=3.14.0
+2026-06-04 11:20:44 | INFO | EDA-NB | os=Windows 11
+2026-06-04 11:20:44 | INFO | EDA-NB | shell=powershell
+2026-06-04 11:20:44 | INFO | EDA-NB | cwd=notebooks
+2026-06-04 11:20:44 | INFO | EDA-NB | github_actions=False
+2026-06-04 11:20:44 | INFO | EDA-NB | Imports complete.
+2026-06-04 11:20:44 | INFO | EDA-NB | Loading dataset: penguins
+2026-06-04 11:20:44 | INFO | EDA-NB | Loaded: 344 rows, 7 columns
+2026-06-04 11:20:44 | INFO | EDA-NB | Previewing first few rows of the dataset
+2026-06-04 11:20:44 | INFO | EDA-NB | Column names
+2026-06-04 11:20:44 | INFO | EDA-NB | DataFrame info (types and non-null counts)
+2026-06-04 11:20:45 | INFO | EDA-NB | Dataset shape: 344 rows, 7 columns
+2026-06-04 11:20:45 | INFO | EDA-NB | Building starter data dictionary
+2026-06-04 11:20:45 | DEBUG | EDA-NB | 
+              column    dtype  missing_count  missing_pct
+0            species      str              0         0.00
+1             island      str              0         0.00
+2     bill_length_mm  float64              2         0.58
+3      bill_depth_mm  float64              2         0.58
+4  flipper_length_mm  float64              2         0.58
+5        body_mass_g  float64              2         0.58
+6                sex      str             11         3.20
+2026-06-04 11:20:45 | INFO | EDA-NB | Missing values per column:
+2026-06-04 11:20:45 | INFO | EDA-NB | species               0
+island                0
+bill_length_mm        2
+bill_depth_mm         2
+flipper_length_mm     2
+body_mass_g           2
+sex                  11
+dtype: int64
+2026-06-04 11:20:45 | INFO | EDA-NB | Checking missing values per column
+2026-06-04 11:20:45 | DEBUG | EDA-NB | 
+sex                  11
+bill_depth_mm         2
+bill_length_mm        2
+flipper_length_mm     2
+body_mass_g           2
+island                0
+species               0
+dtype: int64
+2026-06-04 11:20:45 | INFO | EDA-NB | Duplicate rows detected: 0
+2026-06-04 11:20:45 | INFO | EDA-NB | Call describe() for numeric columns
+2026-06-04 11:20:45 | DEBUG | EDA-NB | 
+       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+count      342.000000     342.000000         342.000000   342.000000
+mean        43.921930      17.151170         200.915205  4201.754386
+std          5.459584       1.974793          14.061714   801.954536
+min         32.100000      13.100000         172.000000  2700.000000
+25%         39.225000      15.600000         190.000000  3550.000000
+50%         44.450000      17.300000         197.000000  4050.000000
+75%         48.500000      18.700000         213.000000  4750.000000
+max         59.600000      21.500000         231.000000  6300.000000
+
+2026-06-04 11:20:45 | DEBUG | EDA-NB | Columns required to be non-missing: ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'species']
+2026-06-04 11:20:45 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:20:45 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:20:45 | INFO | EDA-NB | Rows dropped:  2
+2026-06-04 11:20:45 | INFO | EDA-NB | --------------- Manual statistics ---------------
+2026-06-04 11:20:45 | INFO | EDA-NB | Body Mass Statistics (using numpy):
+2026-06-04 11:20:45 | INFO | EDA-NB |   Mean: 4201.75 g
+2026-06-04 11:20:45 | INFO | EDA-NB |   Std Dev: 800.78 g
+2026-06-04 11:20:45 | INFO | EDA-NB |   Min: 2700.00 g
+2026-06-04 11:20:45 | INFO | EDA-NB |   Max: 6300.00 g
+2026-06-04 11:20:45 | INFO | EDA-NB |   Range: 3600.00 g
+2026-06-04 11:20:45 | INFO | EDA-NB | Computing overall descriptive statistics
+2026-06-04 11:20:45 | DEBUG | EDA-NB | 
+                   count         mean         std     min       25%      50%     75%     max
+bill_length_mm     342.0    43.921930    5.459584    32.1    39.225    44.45    48.5    59.6
+bill_depth_mm      342.0    17.151170    1.974793    13.1    15.600    17.30    18.7    21.5
+flipper_length_mm  342.0   200.915205   14.061714   172.0   190.000   197.00   213.0   231.0
+body_mass_g        342.0  4201.754386  801.954536  2700.0  3550.000  4050.00  4750.0  6300.0
+2026-06-04 11:20:45 | INFO | EDA-NB | --------------- Using pandas groupby() and agg() ---------------
+2026-06-04 11:20:45 | INFO | EDA-NB | Computing descriptive statistics by group
+2026-06-04 11:20:45 | DEBUG | EDA-NB | 
+          bill_length_mm                                  bill_depth_mm                                   \
+                   count       mean       std   min   max         count       mean       std   min   max   
+species                                                                                                    
+Adelie               151  38.791391  2.663405  32.1  46.0           151  18.346358  1.216650  15.5  21.5   
+Chinstrap             68  48.833824  3.339256  40.9  58.0            68  18.420588  1.135395  16.4  20.8   
+Gentoo               123  47.504878  3.081857  40.9  59.6           123  14.982114  0.981220  13.1  17.3   
+
+          flipper_length_mm                                     body_mass_g                                           
+                      count        mean       std    min    max       count         mean         std     min     max  
+species                                                                                                               
+Adelie                  151  189.953642  6.539457  172.0  210.0         151  3700.662252  458.566126  2850.0  4775.0  
+Chinstrap                68  195.823529  7.131894  178.0  212.0          68  3733.088235  384.335081  2700.0  4800.0  
+Gentoo                  123  217.186992  6.484976  203.0  231.0         123  5076.016260  504.116237  3950.0  6300.0  
+2026-06-04 11:20:45 | INFO | EDA-NB | --------------- Improving the output ---------------
+2026-06-04 11:20:45 | DEBUG | EDA-NB | 
+                             count         mean         std     min     max
+species                                                                    
+Adelie    bill_length_mm       151    38.791391    2.663405    32.1    46.0
+          bill_depth_mm        151    18.346358    1.216650    15.5    21.5
+          flipper_length_mm    151   189.953642    6.539457   172.0   210.0
+          body_mass_g          151  3700.662252  458.566126  2850.0  4775.0
+Chinstrap bill_length_mm        68    48.833824    3.339256    40.9    58.0
+          bill_depth_mm         68    18.420588    1.135395    16.4    20.8
+          flipper_length_mm     68   195.823529    7.131894   178.0   212.0
+          body_mass_g           68  3733.088235  384.335081  2700.0  4800.0
+Gentoo    bill_length_mm       123    47.504878    3.081857    40.9    59.6
+          bill_depth_mm        123    14.982114    0.981220    13.1    17.3
+          flipper_length_mm    123   217.186992    6.484976   203.0   231.0
+          body_mass_g          123  5076.016260  504.116237  3950.0  6300.0
+2026-06-04 11:20:45 | INFO | EDA-NB | Computing correlation matrix for numeric columns
+2026-06-04 11:20:45 | INFO | EDA-NB | 
+Correlation matrix:
+2026-06-04 11:20:45 | DEBUG | EDA-NB | 
+                   bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+bill_length_mm           1.000000      -0.235053           0.656181     0.595110
+bill_depth_mm           -0.235053       1.000000          -0.583851    -0.471916
+flipper_length_mm        0.656181      -0.583851           1.000000     0.871202
+body_mass_g              0.595110      -0.471916           0.871202     1.000000
+2026-06-04 11:20:45 | INFO | EDA-NB | ---------Visualize Correlation Matrix as a Heatmap---------------
+2026-06-04 11:20:46 | INFO | EDA-NB | ---- Creating Scatter Plot to see Relationships ------
+2026-06-04 11:20:46 | INFO | EDA-NB | ----   Use clean dataframe ---------------------------
+2026-06-04 11:20:46 | INFO | EDA-NB | ----   Set x to flipper length -----------------------
+2026-06-04 11:20:46 | INFO | EDA-NB | ----   Set y to bill length --------------------------
+2026-06-04 11:20:46 | INFO | EDA-NB | ----   Set the hue (color mapping) to the group column --
+2026-06-04 11:20:46 | INFO | EDA-NB | ------- Creating another chart -------
+2026-06-04 11:20:46 | INFO | EDA-NB | ------ Creating Box Plot to see Distribution: ---------
+2026-06-04 11:20:46 | INFO | EDA-NB | ------   Use clean dataframe --------------------------
+2026-06-04 11:20:46 | INFO | EDA-NB | ------   Set x to the group column --------------------
+2026-06-04 11:20:46 | INFO | EDA-NB | ------   Set y to flipper length ----------------------
+2026-06-04 11:20:46 | INFO | EDA-NB | Creating A Histogram
+2026-06-04 11:20:46 | INFO | EDA-NB | Creating A Histogram to see Distribution of flipper length compared by sex
+2026-06-04 11:20:47 | INFO | EDA-NB | ========================
+2026-06-04 11:20:47 | INFO | EDA-NB | SUMMARY
+2026-06-04 11:20:47 | INFO | EDA-NB | ========================
+2026-06-04 11:20:47 | INFO | EDA-NB | Dataset: penguins
+2026-06-04 11:20:47 | INFO | EDA-NB | Original rows: 344
+2026-06-04 11:20:47 | INFO | EDA-NB | Clean rows:    342
+2026-06-04 11:20:47 | INFO | EDA-NB | Groups found in species: ['Adelie', 'Chinstrap', 'Gentoo']
+2026-06-04 11:20:47 | INFO | EDA-NB | Strongest correlation: 
+2026-06-04 11:20:47 | INFO | EDA-NB |   flipper_length_mm and body_mass_g (~0.87)
+2026-06-04 11:20:47 | INFO | EDA-NB | Suggested next step: 
+2026-06-04 11:20:47 | INFO | EDA-NB |   Model body_mass_g ~ flipper_length_mm with linear regression
+2026-06-04 11:20:47 | INFO | EDA-NB | See what other seaborn datasets you can load and explore with the same workflow!
+2026-06-04 11:20:47 | INFO | EDA-NB | Available seaborn datasets: ['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic'], <class 'list'>
+2026-06-04 11:20:47 | INFO | EDA-NB | EDA workflow complete
+2026-06-04 11:20:47 | INFO | EDA-NB | IMPORTANT: This script creates chart windows.
+2026-06-04 11:20:47 | INFO | EDA-NB | Close any chart windows and terminate this process with CTRL+c as needed.
+2026-06-04 11:20:47 | INFO | EDA-NB | ========================
+2026-06-04 11:20:47 | INFO | EDA-NB | Executed successfully!
+2026-06-04 11:20:47 | INFO | EDA-NB | ========================
+2026-06-04 11:23:34 | INFO | EDA | Loading dataset: penguins
+2026-06-04 11:23:34 | INFO | EDA | Loaded: 344 rows, 7 columns
+2026-06-04 11:23:34 | INFO | EDA | Loading dataset: penguins
+2026-06-04 11:23:34 | INFO | EDA | Loaded: 344 rows, 7 columns
+2026-06-04 11:23:34 | INFO | EDA | Loading dataset: penguins
+2026-06-04 11:23:34 | INFO | EDA | Loaded: 344 rows, 7 columns
+2026-06-04 11:23:34 | INFO | EDA | Loading dataset: penguins
+2026-06-04 11:23:34 | INFO | EDA | Loaded: 344 rows, 7 columns
+2026-06-04 11:23:34 | INFO | EDA | Creating cleaned view for EDA (dropping rows with key missing values)
+2026-06-04 11:23:34 | DEBUG | EDA | Columns required to be non-missing: ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'species']
+2026-06-04 11:23:34 | INFO | EDA | Original rows: 344
+2026-06-04 11:23:34 | INFO | EDA | Clean rows:    342
+2026-06-04 11:23:34 | INFO | EDA | Rows dropped:  2
+2026-06-04 11:23:34 | INFO | EDA | Computing correlation matrix for numeric columns
+2026-06-04 11:23:34 | INFO | EDA | 
+Correlation matrix:
+2026-06-04 11:23:34 | DEBUG | EDA | 
+                   bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
+bill_length_mm           1.000000      -0.235053           0.656181     0.595110
+bill_depth_mm           -0.235053       1.000000          -0.583851    -0.471916
+flipper_length_mm        0.656181      -0.583851           1.000000     0.871202
+body_mass_g              0.595110      -0.471916           0.871202     1.000000
+2026-06-04 11:23:34 | INFO | EDA | ---------Visualize Correlation Matrix as a Heatmap---------------
+2026-06-04 11:23:36 | INFO | EDA | 
+CUSTOM: Update these notes and use Markdown cells to narrate and tell the story as you explore. For example:
+
+Interpretation:
+
+ - Values close to 1 (dark red) = strong positive correlation (both increase together)
+ - Values close to -1 (dark blue) = strong negative correlation (one increases, other decreases)
+ - Values close to 0 (white) = little or no linear relationship
+ - The diagonal is always 1 (each variable correlates perfectly with itself)
+
+From this heatmap, we can see that flipper_length_mm and body_mass_g show strong positive correlation (~0.87).
+
