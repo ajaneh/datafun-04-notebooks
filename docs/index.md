@@ -3,6 +3,22 @@
 This site provides documentation for this project.
 Use the navigation to explore module-specific materials.
 
+## Custom Project
+
+### Dataset
+"Total bill (cost of the meal), including tax, in US dollars, Tip (gratuity) in US dollars, Sex of person paying for the meal, Smoker in party?, Day of Week, Meal Time" [Description Source](https://www.kaggle.com/datasets/ranjeetjain3/seaborn-tips-dataset)
+It's important to note that this dataset was collected in the 1990s, analysis was performed for both the raw data, and the data adjusted for inflation by a factor of 2.55
+
+### Phase 4 Modifications
+A different dataset was analyzed, additional data points (like tip percentage, and total cost including tip) were added as values of interest
+
+### Phase 5 Custom Project
+Two separate scenarios needed to be explored. The first data passthrough didn't show anything extraordinary or highly interesting. It did show that the majority of customers adjusted their tip so the final bill would be a clean even number. ![Unscaled Histogram](./images/inflation_NOT_considered/histogram_whole_number_comparison.png)
+Comparing scaled/inflation accounted data isn't meaningful, as the tip percentage remains the same with a standard scaling factor, it is useful however to consider the cost of the meal and tip relevant to today's costs
+
+
+
+
 ## How-To Guide
 
 Many instructions are common to all our projects.

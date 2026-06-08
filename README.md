@@ -83,12 +83,12 @@ Press `Ctrl+c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
 
 ## Findings and Visuals
 
-Follow this example, but the figures should
-reflect your work and include your narrative.
-Remove unnecessary instructional comments in your final version of this README.md.
+### Customers Frequently adjusted the amount of their tips to reach a whole number
+![Cent Histogram](docs/images/inflation_NOT_considered/histogram_whole_number_comparison.png)
+![Boxplot Histogram](docs/images/inflation_NOT_considered/boxplot_whole_number_tips.png)
 
-![Correlation Heatmap](./docs/images/Figure_1.png)
 
-![Provide a Useful Caption](./docs/images/Figure_2.png)
-
-![Provide a Useful Caption](./docs/images/Figure_3.png)
+### There is no meaningful difference in tip percentage per customer's gender, smoking habits, nor the day of the week
+![Day](docs/images/inflation_considered/scatter_tips_total_bill_by_day.png)
+![Gender](docs/images/inflation_considered/scatter_tips_total_bill_by_sex.png)
+![Smoker](docs/images/inflation_considered/scatter_tips_total_bill_by_smoker.png)
